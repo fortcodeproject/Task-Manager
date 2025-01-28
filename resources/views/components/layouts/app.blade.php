@@ -1,67 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Task Manager</title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <link rel="icon" href="{{ asset('assets/img/kaiadmin/favicon.ico') }}" type="image/x-icon" />
 
-    <link rel="stylesheet" href="{{ asset('assets/bootstrap-5.0.2/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/geral.css') }}">
+    <!-- Fonts and icons -->
+    <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ["Public Sans:300,400,500,600,700"]
+            },
+            custom: {
+                families: [
+                    "Font Awesome 5 Solid",
+                    "Font Awesome 5 Regular",
+                    "Font Awesome 5 Brands",
+                    "simple-line-icons",
+                ],
+                urls: ["assets/css/fonts.min.css"],
+            },
+            active: function() {
+                sessionStorage.fonts = true;
+            },
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/kaiadmin.min.css') }}" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all6.css') }}">
-    
-    <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/bootstrap-5.0.2/js/bootstrap.js') }}"></script>
-
     <script src="{{ asset('assets/js/alerta.js') }}"></script>
     <script src="{{ asset('assets/js/executar_alert.js') }}"></script>
     @livewireStyles
 </head>
+
 <body>
-    <header>
-        <h1> <i class="fas fa-task"></i> Task Manager</h1>
-    </header>
+    <div class="wrapper">
+        @include('components.layouts.sidebar')
+        <div class="main-panel">
+            @include('components.layouts.header')
+            {{$slot}}
+            @include('components.layouts.footer')
+        </div>
+    </div>
 
-    <main>
-        {{$slot}}
-    </main>
+    <!--   Core JS Files   -->
+    <script src="{{ asset('assets/js/core/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
 
-    <footer>
-        <h1>Footer</h1>
-    </footer>
-    @livewireScripts
+    <!-- jQuery Scrollbar -->
+    <script src="{{ asset('assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 
+    <!-- Chart JS -->
+    <script src="{{ asset('assets/js/plugin/chart.js/chart.min.js') }}"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="{{ asset('assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
+
+    <!-- Chart Circle -->
+    <script src="{{ asset('assets/js/plugin/chart-circle/circles.min.js') }}"></script>
+
+    <!-- Datatables -->
+    <script src="{{ asset('assets/js/plugin/datatables/datatables.min.js') }}"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="{{ asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="{{ asset('assets/js/plugin/jsvectormap/jsvectormap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugin/jsvectormap/world.js') }}"></script>
+
+    <!-- Sweet Alert -->
+    <script src="{{ asset('assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="{{ asset('assets/js/kaiadmin.min.js') }}"></script>
+
+    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
+    <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
+    <script src="{{ asset('assets/js/demo.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $('#minhaTabela').DataTable({
-                "language": {
-                    "sEmptyTable":     "Nenhum registro encontrado",
-                    "sInfo":           "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                    "sInfoEmpty":      "Mostrando 0 até 0 de 0 registros",
-                    "sInfoFiltered":   "(Filtrados de _MAX_ registros)",
-                    "sInfoPostFix":    "",
-                    "sInfoThousands":  ".",
-                    "sLengthMenu":     "_MENU_ Resultados por página",
-                    "sLoadingRecords": "Carregando...",
-                    "sProcessing":     "Processando...",
-                    "sZeroRecords":    "Nenhum registro encontrado",
-                    "sSearch":         "Pesquisar",
-                    "oPaginate": {
-                        "sNext":     "Próximo",
-                        "sPrevious": "Anterior",
-                        "sFirst":    "Primeiro",
-                        "sLast":     "Último"
-                    },
-                    "oAria": {
-                        "sSortAscending":  ": Ordenar colunas de forma ascendente",
-                        "sSortDescending": ": Ordenar colunas de forma descendente"
-                    }
-                },
-                "order": [[0, 'desc']]
-            });
+        $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+            type: "line",
+            height: "70",
+            width: "100%",
+            lineWidth: "2",
+            lineColor: "#177dff",
+            fillColor: "rgba(23, 125, 255, 0.14)",
+        });
+
+        $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+            type: "line",
+            height: "70",
+            width: "100%",
+            lineWidth: "2",
+            lineColor: "#f3545d",
+            fillColor: "rgba(243, 84, 93, .14)",
+        });
+
+        $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+            type: "line",
+            height: "70",
+            width: "100%",
+            lineWidth: "2",
+            lineColor: "#ffa534",
+            fillColor: "rgba(255, 165, 52, .14)",
         });
     </script>
+
+@livewireScripts
+
+<script>
+    $(document).ready(function() {
+        $('#minhaTabela').DataTable({
+            "language": {
+                "sEmptyTable":     "Nenhum registro encontrado",
+                "sInfo":           "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando 0 até 0 de 0 registros",
+                "sInfoFiltered":   "(Filtrados de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sInfoThousands":  ".",
+                "sLengthMenu":     "_MENU_ Resultados por página",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing":     "Processando...",
+                "sZeroRecords":    "Nenhum registro encontrado",
+                "sSearch":         "Pesquisar",
+                "oPaginate": {
+                    "sNext":     "Próximo",
+                    "sPrevious": "Anterior",
+                    "sFirst":    "Primeiro",
+                    "sLast":     "Último"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Ordenar colunas de forma ascendente",
+                    "sSortDescending": ": Ordenar colunas de forma descendente"
+                }
+            },
+            "order": [[0, 'desc']]
+        });
+    });
+</script>
 </body>
+
 </html>
