@@ -30,8 +30,7 @@ class Autenticacao extends Component
     public function autenticar(){
         $this->validate();
         if (Auth::attempt(['email' => $this->email, 'password' => $this->senha])) {
-            dd("Usuario encontrado");
-            Auth::logout();
+            return redirect()->route("inicio");
         }else{
             $this->dispatch("alerta", [
                 "icon" => "error",
