@@ -1,12 +1,12 @@
-document.addEventListener('livewire:load', function () {
+document.addEventListener('livewire:init', function () {
     Livewire.on('alerta', function (data) {
         Swal.fire({
-            icon: data.icon,
-            title: data.mensagem,
-            toast: data.toast ? data.toast : true,
-            position: data.position ? data.position : 'top-end',
-            showConfirmButton: data.btn  ? data.btn : false,
-            timer: data.tempo ? data.tempo : 2000
+            icon: data[0].icon,
+            title: data[0].mensagem,
+            toast: data[0].toast ? data[0].toast : true,
+            position: data[0].position ? data[0].position : 'top-end',
+            showConfirmButton: data[0].btn  ? data[0].btn : false,
+            timer: data[0].tempo ? data[0].tempo : 2000
         });
     });
 });

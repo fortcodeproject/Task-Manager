@@ -29,16 +29,14 @@ class Autenticacao extends Component
 
     public function autenticar(){
         $this->validate();
-
         if (Auth::attempt(['email' => $this->email, 'password' => $this->senha])) {
             dd("Usuario encontrado");
             Auth::logout();
         }else{
-            dd("Usuario não encontrado");
-            /*$this->emit("alerta", [
+            $this->dispatch("alerta", [
                 "icon" => "error",
                 "mensagem" => "Usuario não encontrado",
-            ]);*/
+            ]);
         }
     }
 }

@@ -9,6 +9,8 @@
 
     <!-- Fonts and icons -->
     <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
+  
+
     <script>
         WebFont.load({
             google: {
@@ -39,17 +41,16 @@
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all6.css') }}">
-    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/alerta.js') }}"></script>
-    <script src="{{ asset('assets/js/executar_alert.js') }}"></script>
+    
+
     @livewireStyles
 </head>
 
 <body>
     <div class="wrapper" style="min-height: 100vh">
-            <div class="d-flex align-items-center border" style="min-height: inherit">
-                {{$slot}}
-            </div>
+        <div class="d-flex align-items-center border" style="min-height: inherit">
+            {{ $slot }}
+        </div>
     </div>
 
     <!--   Core JS Files   -->
@@ -72,7 +73,6 @@
     <!-- Datatables -->
     <script src="{{ asset('assets/js/plugin/datatables/datatables.min.js') }}"></script>
 
-   
     <!-- jQuery Vector Maps -->
     <script src="{{ asset('assets/js/plugin/jsvectormap/jsvectormap.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugin/jsvectormap/world.js') }}"></script>
@@ -115,38 +115,43 @@
         });
     </script>
 
-@livewireScripts
-
-<script>
-    $(document).ready(function() {
-        $('#minhaTabela').DataTable({
-            "language": {
-                "sEmptyTable":     "Nenhum registro encontrado",
-                "sInfo":           "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                "sInfoEmpty":      "Mostrando 0 até 0 de 0 registros",
-                "sInfoFiltered":   "(Filtrados de _MAX_ registros)",
-                "sInfoPostFix":    "",
-                "sInfoThousands":  ".",
-                "sLengthMenu":     "_MENU_ Resultados por página",
-                "sLoadingRecords": "Carregando...",
-                "sProcessing":     "Processando...",
-                "sZeroRecords":    "Nenhum registro encontrado",
-                "sSearch":         "Pesquisar",
-                "oPaginate": {
-                    "sNext":     "Próximo",
-                    "sPrevious": "Anterior",
-                    "sFirst":    "Primeiro",
-                    "sLast":     "Último"
+    <script>
+        $(document).ready(function() {
+            $('#minhaTabela').DataTable({
+                "language": {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ Resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
                 },
-                "oAria": {
-                    "sSortAscending":  ": Ordenar colunas de forma ascendente",
-                    "sSortDescending": ": Ordenar colunas de forma descendente"
-                }
-            },
-            "order": [[0, 'desc']]
+                "order": [
+                    [0, 'desc']
+                ]
+            });
         });
-    });
-</script>
+    </script>
+
+    <script src="{{ asset('assets/js/alerta.js') }}"></script>
+    <script src="{{ asset('assets/js/executar_alert.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+    @livewireScripts
 </body>
 
 </html>
