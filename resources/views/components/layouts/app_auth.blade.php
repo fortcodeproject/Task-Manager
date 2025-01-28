@@ -46,13 +46,10 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        @include('components.layouts.sidebar')
-        <div class="main-panel">
-            @include('components.layouts.header')
-            {{$slot}}
-            @include('components.layouts.footer')
-        </div>
+    <div class="wrapper" style="min-height: 100vh">
+            <div class="d-flex align-items-center border" style="min-height: inherit">
+                {{$slot}}
+            </div>
     </div>
 
     <!--   Core JS Files   -->
@@ -75,6 +72,7 @@
     <!-- Datatables -->
     <script src="{{ asset('assets/js/plugin/datatables/datatables.min.js') }}"></script>
 
+   
     <!-- jQuery Vector Maps -->
     <script src="{{ asset('assets/js/plugin/jsvectormap/jsvectormap.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugin/jsvectormap/world.js') }}"></script>
