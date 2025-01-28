@@ -1,0 +1,61 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+header, footer{
+    min-height: 20vh;
+}
+
+header{
+    background: rgb(73, 90, 83);
+}
+
+footer{
+    background: #000000;
+}
+
+main{
+    min-height: 60vh;
+}
+
+body{
+    background-color: #222;
+    color: orange;
+    font-family: Verdana;
+    font-size: larger;
+    min-height: 100vh;
+}
+
+input, select{
+    width: 300px;
+    height: 50px;
+    font-size: larger;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+select{
+    background: orange;
+    color: black;
+}
+
+button{
+    font-size: larger;
+    background: red;
+    color: black;
+    cursor: pointer;
+}
+
+#buttonCadastro{
+    width: 300px;
+    height: 50px;
+    font-size: larger;
+    background: orange;
+    color: black;
+    cursor: pointer;
+}
+
+button:hover, #buttonCadastro:hover{
+    background: #0F9;
+}
