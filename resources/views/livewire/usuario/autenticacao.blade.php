@@ -1,4 +1,8 @@
 <div class="container">
+    <div>
+        <h1> <i class="fas fa-edit"></i> Task Manager</h1> <hr>
+    </div>
+
     <div class="container d-flex justify-content-center">
         <form class=" ">
             <div>
@@ -20,5 +24,9 @@
                 <button type="submit" class="btn btn-success" style="min-width: 350px; ">Autenticar</button>
             </div>
         </form>
+    </div>
+
+    <div>
+      <hr>
     </div>
 </div>
