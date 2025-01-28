@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('id_acesso');
+            $table->foreign("id_acesso")->references("id")->on("acessos")->onDelete("cascade");
+            $table->enum('criacao_tarefa', ["permitido", "nao permitido"])->default("nao permitido");
             $table->rememberToken();
             $table->timestamps();
         });
