@@ -64,7 +64,7 @@
                             <li>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Configurar Perfil</a>
-                                <a class="dropdown-item" href="#">Sair</a>
+                                <a class="dropdown-item" href="{{route("usuario.sair")}}">Sair</a>
                             </li>
                         </div>
                     </ul>
