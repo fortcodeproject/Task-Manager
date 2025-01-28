@@ -42,9 +42,8 @@
                 <li class="nav-item topbar-user dropdown hidden-caret">
                     <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                         aria-expanded="false">
-                        <div class="avatar-sm">
-                            <img src="{{ asset('assets/img/profile.jpg') }}" alt="..."
-                                class="avatar-img rounded-circle" />
+                        <div class="">
+                            <i class="fas fa-user" style="font-size: 30px"></i>
                         </div>
                         <span class="profile-username">
                             <span class="op-7"></span>
@@ -55,20 +54,20 @@
                         <div class="dropdown-user-scroll scrollbar-outer">
                             <li>
                                 <div class="user-box">
-                                    <div class="avatar-lg">
-                                        <img src="{{ asset('assets/img/profile.jpg') }}" alt="image profile"
-                                            class="avatar-img rounded" />
+                                    <div class="">
+                                        <i class="fas fa-user" style="font-size: 50px"></i>
                                     </div>
                                     <div class="u-text">
                                         <h4>{{ucwords($usuario->name)}}</h4>
                                         <p class="text-muted">{{$usuario->email}}</p>
-                                        <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">Ver Perfil</a>
+                                        <a href="{{ route('usuario.perfil', $usuario->id) }}" class="btn btn-xs btn-secondary btn-sm">Ver Perfil</a>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Configurar Perfil</a>
+                                <a class="dropdown-item" href="#">Actualizar Dados</a>
+                                <a class="dropdown-item" href="#">Alterar Senha</a>
                                 <a class="dropdown-item" href="{{ route('usuario.sair') }}">Sair</a>
                             </li>
                         </div>

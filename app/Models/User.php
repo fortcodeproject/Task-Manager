@@ -40,6 +40,11 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+
+     public function buscarAcesso(){
+        return $this->belongsTo(Acesso::class, "id_acesso", "id");
+     }
+
     protected function casts(): array
     {
         return [

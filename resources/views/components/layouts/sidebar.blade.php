@@ -1,5 +1,10 @@
 <!-- Sidebar -->
 <div class="sidebar" data-background-color="dark">
+    @php
+        use Illuminate\Support\Facades\Auth;
+        $usuario = Auth::user();
+    @endphp
+
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
@@ -32,7 +37,7 @@
                     <div class="collapse" id="Painel">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="">
+                                <a href="{{ route('usuario.perfil', $usuario->id) }}">
                                     <span class="sub-item">Perfil</span>
                                 </a>
                             </li>
