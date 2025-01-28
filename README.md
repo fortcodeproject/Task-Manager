@@ -2,7 +2,7 @@
 Teste de Admissão a Vaga de Desenvolver PHP/LARAVEL
 
 
-# Teste | Requirimentos
+# Teste | Requerimentos
 1. Fazer forke deste repositório aqui no github
 2. Criar uma aplicação laravel
 3. Instalar o Livewire 3, a interação de usuários devem ser a tempo real
