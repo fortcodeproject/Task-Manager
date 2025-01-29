@@ -22,6 +22,9 @@ return new class extends Migration
             $table->unsignedBigInteger('criador');
             $table->foreign("criador")->references("id")->on("users")->onDelete("cascade");
             $table->timestamps();
+            $table->unsignedBigInteger('realizador')->nullable();
+            $table->foreign("realizador")->references("id")->on("users")->onDelete("cascade");
+            $table->timestamps();
         });
     }
 
