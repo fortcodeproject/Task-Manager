@@ -67,7 +67,7 @@
                             <li>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('usuario.actualizar.dados', $usuario->id) }}">Actualizar Dados</a>
-                                <a class="dropdown-item" href="#">Alterar Senha</a>
+                                <a class="dropdown-item" href="{{ route('usuario.alterar.senha') }}">Alterar Senha</a>
                                 <a class="dropdown-item" href="{{ route('usuario.sair') }}">Sair</a>
                             </li>
                         </div>
