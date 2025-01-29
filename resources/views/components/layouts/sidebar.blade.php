@@ -59,7 +59,7 @@
                     <div class="collapse" id="tarerfas">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="">
+                                <a href="{{route('tarefa.criar')}}">
                                     <span class="sub-item">Criar</span>
                                 </a>
                             </li>

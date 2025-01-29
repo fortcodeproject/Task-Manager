@@ -7,6 +7,9 @@ use App\Livewire\Usuario\{
     ActualizarDados,
     AlterarSenha
 };
+use App\Livewire\Tarefa\{
+    Criar
+};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +25,9 @@ Route::prefix("/usuario")->name("usuario.")->group(function(){
         Auth::logout();
         return redirect()->route("usuario.autenticacao");
     })->name("sair");
+});
+
+Route::prefix("/tarefa")->name("tarefa.")->group(function(){
+    Route::get("/criar", Criar::class)->name("criar");
 });
 
