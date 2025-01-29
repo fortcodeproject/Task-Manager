@@ -85,8 +85,8 @@
             </div>
         </div>
 
-        <h3 class="fw-bold mb-3">Criar Nova</h3>
-        <form class="row" wire:submit.prevent="criar">
+        <h3 class="fw-bold mb-3">Actualizar</h3>
+        <form class="row" wire:submit.prevent="actualizarTarefa">
             <div class="col-6 mb-3">
                 <p class="card-category">Título:</p>
                 <input type="text" wire:model='titulo' class="form-control" placeholder="Digite o título"
@@ -119,7 +119,7 @@
             </div>
 
             <div class="col-12 mb-3">
-                <button class="btn btn-primary">Criar Tarefa</button>
+                <button class="btn btn-primary">Actualizar Tarefa</button>
             </div>
         </form>
     </div>

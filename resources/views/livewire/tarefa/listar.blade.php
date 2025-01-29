@@ -71,11 +71,13 @@
                                             <td>
                                                 <div class="form-button-action">
                                                     @if ($permissao->editar == 'permitido')
-                                                        <button type="button" data-bs-toggle="tooltip" title=""
-                                                            class="btn btn-link btn-primary btn-lg"
-                                                            data-original-title="Edit Task">
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>
+                                                        <a href="{{route("tarefa.actualizar", $tarefa->id)}}">
+                                                            <button type="button" data-bs-toggle="tooltip"
+                                                                title="" class="btn btn-link btn-primary btn-lg"
+                                                                data-original-title="Edit Task">
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        </a>
                                                     @endif
 
                                                     @if ($permissao->eliminar == 'permitido')

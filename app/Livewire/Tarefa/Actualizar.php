@@ -4,11 +4,12 @@ namespace App\Livewire\Tarefa;
 
 use App\Models\Tarefa;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Actualizar extends Component
 {
-    public $titulo, $usuarioEspecifico, $descricao;
+    public $idTarefa, $titulo, $usuarioEspecifico, $descricao;
     public $usuarios;
     public $tarefas, $trPendentes, $trAndamento, $trFinalizadas;
 
@@ -22,6 +23,11 @@ class Actualizar extends Component
         "descricao.required" => "Campo obrigatório",
     ];
 
+    public function mount($idTarefa){
+        $this->idTarefa = $idTarefa;
+        $this->preencharFormulario($idTarefa);
+    }
+
     public function render()
     {
         $this->usuarios = User::where("id_acesso", "!=", 1)->get();
@@ -34,30 +40,31 @@ class Actualizar extends Component
         ->layout("components.layouts.app");
     }
 
-    public function criar()
+    public function actualizarTarefa()
     {
         $this->validate();
 
-        $tarefa = Tarefa::create([
+        $tarefa = Tarefa::where("id", $this->idTarefa)->update([
             'titulo' => $this->titulo,
             'descricao' => $this->descricao,
             'usuario_especifico' => $this->usuarioEspecifico ? $this->usuarioEspecifico : null,
             'criador' => Auth::user()->id,
             'realizador' => null,
         ]);
-        $this->criarPermissao($tarefa->id);
 
         $this->dispatch("alerta", [
             "icon" => "success",
-            "mensagem" => "Tarefa criada com sucesso",
+            "mensagem" => "Tarefa actualizada com sucesso",
             "tempo" => 4000,
         ]);
 
-        $this->limparCampos();
+        return redirect()->route("tarefa.listar");
     }
 
-    public function limparCampos()
-    {
-        $this->titulo = $this->usuarioEspecifico = $this->descricao = null;
+    public function preencharFormulario($idTarefa){
+        $tarefa = Tarefa::find($idTarefa);
+        $this->titulo = $tarefa->titulo;
+        $this->descricao = $tarefa->descricao;
+        $this->usuarioEspecifico =  $tarefa->usuarioEspecifico;
     }
 }
