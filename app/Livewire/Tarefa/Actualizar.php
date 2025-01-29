@@ -25,7 +25,7 @@ class Actualizar extends Component
 
     public function mount($idTarefa){
         $this->idTarefa = $idTarefa;
-        $this->preencharFormulario($idTarefa);
+        $this->preencherFormulario($idTarefa);
     }
 
     public function render()
@@ -61,7 +61,7 @@ class Actualizar extends Component
         return redirect()->route("tarefa.listar");
     }
 
-    public function preencharFormulario($idTarefa){
+    public function preencherFormulario($idTarefa){
         $tarefa = Tarefa::find($idTarefa);
         $this->titulo = $tarefa->titulo;
         $this->descricao = $tarefa->descricao;

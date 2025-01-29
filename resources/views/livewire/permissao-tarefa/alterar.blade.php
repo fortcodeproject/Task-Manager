@@ -154,7 +154,7 @@
                                                     <button type="button" data-bs-toggle="tooltip" title=""
                                                         class="btn btn-link btn-primary btn-lg"
                                                         data-original-title="Edit Task" 
-                                                        wire:click.prevent='preencharFormulario({{$permissao->id}})'>
+                                                        wire:click.prevent='preencherFormulario({{$permissao->id}})'>
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                 </div>

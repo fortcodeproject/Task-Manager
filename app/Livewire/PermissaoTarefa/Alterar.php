@@ -86,7 +86,7 @@ class Alterar extends Component
         }
     }
 
-    public function preencharFormulario($idPermissao){
+    public function preencherFormulario($idPermissao){
         $permissao = PermissaoTarefa::find($idPermissao);
         $this->idPermissao = $permissao->id;
         $this->idUsuario = $permissao->id_usuario;

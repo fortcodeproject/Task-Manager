@@ -7,7 +7,8 @@ use App\Livewire\Usuario\{
     ActualizarDados,
     AlterarSenha,
     Criar as CriarUsuario,
-    Listar as ListarUsuario
+    Listar as ListarUsuario,
+    PermissaoUsuario as PermissaoUsuario,
 };
 use App\Livewire\Tarefa\{
     Criar as CriarTarefa,
@@ -31,6 +32,7 @@ Route::prefix("/usuario")->name("usuario.")->group(function(){
     Route::get("/alterar/senha", AlterarSenha::class)->name("alterar.senha");
     Route::get("/criar", CriarUsuario::class)->name("criar");
     Route::get("/listar", ListarUsuario::class)->name("listar");
+    Route::get("/permissao", PermissaoUsuario::class)->name("permissao");
     Route::get("/sair", function() {
         Auth::logout();
         return redirect()->route("usuario.autenticacao");

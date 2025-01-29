@@ -110,6 +110,12 @@
                                         <span class="sub-item">Listar</span>
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="{{ route('usuario.permissao') }}">
+                                        <span class="sub-item">Permissão de usuário</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
