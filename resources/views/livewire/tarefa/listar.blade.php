@@ -26,7 +26,11 @@
                                     <th>Usuário Específico</th>
                                     <th>Situação</th>
                                     <th>Criador</th>
-                                    <th>Realizador</th>
+
+                                    @if ($usuarioLogado->id_acesso == 2)
+                                        <th>Realizador</th>
+                                    @endif
+
                                     <th style="width: 10%">Acção</th>
                                 </tr>
                             </thead>
@@ -47,15 +51,18 @@
                                         <td>{{ ucwords($item->situacao) }}</td>
                                         <td style="white-space: nowrap">{{ ucwords($item->buscarUsuarioCriador->name) }}
                                         </td>
-                                        <td>
-                                            @if ($item->realizador != null)
-                                                {{ $item->realizador }}
-                                            @else
-                                                <button type="button" class="btn btn-success btn-primary btn-lg">
-                                                    Realizar
-                                                </button>
-                                            @endif
-                                        </td>
+
+                                        @if ($usuarioLogado->id_acesso == 2)
+                                            <td>
+                                                @if ($item->realizador != null)
+                                                    {{ $item->realizador }}
+                                                @else
+                                                    <button type="button" class="btn btn-success btn-primary btn-lg">
+                                                        Realizar
+                                                    </button>
+                                                @endif
+                                            </td>
+                                        @endif
 
                                         <td>
                                             <div class="form-button-action">
