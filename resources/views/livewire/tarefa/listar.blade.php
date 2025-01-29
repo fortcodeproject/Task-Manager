@@ -35,30 +35,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($tarefas as $item)
-                                    @if ($item->buscarPermissao)
-                                        @if ($item->buscarPermissao->leitura == 'permitido' || $usuarioLogado->id_acesso == 1)
+                                @foreach ($permissaoTarefas as $permissao)
+                                    @php
+                                        $tarefa = $this->buscarTodasTarefas($permissao->id_tarefa);
+                                    @endphp
+
+                                        @if ($permissao->leitura == 'permitido' && $permissao->id_usuario == $usuarioLogado->id)
                                             <tr>
-                                                <td>{{ $item->id }}</td>
-                                                <td style="white-space: nowrap">{{ $item->titulo }}</td>
-                                                <td>{{ $item->descricao }}</td>
-                                                <td>{{ ucwords($item->estado) }}</td>
+                                                <td>{{ $tarefa->id }}</td>
+                                                <td style="white-space: nowrap">{{ $tarefa->titulo }}</td>
+                                                <td>{{ $tarefa->descricao }}</td>
+                                                <td>{{ ucwords($tarefa->estado) }}</td>
                                                 <td style="white-space: nowrap">
-                                                    @if ($item->usuario_especifico != null)
-                                                        {{ ucwords($item->buscarUsuarioEspecifico->name) }}
+                                                    @if ($tarefa->usuario_especifico != null)
+                                                        {{ ucwords($tarefa->buscarUsuarioEspecifico->name) }}
                                                     @else
                                                         Vazio
                                                     @endif
                                                 </td>
-                                                <td>{{ ucwords($item->situacao) }}</td>
+                                                <td>{{ ucwords($tarefa->situacao) }}</td>
                                                 <td style="white-space: nowrap">
-                                                    {{ ucwords($item->buscarUsuarioCriador->name) }}
+                                                    {{ ucwords($tarefa->buscarUsuarioCriador->name) }}
                                                 </td>
 
                                                 @if ($usuarioLogado->id_acesso == 2)
                                                     <td>
-                                                        @if ($item->realizador != null)
-                                                            {{ $item->realizador }}
+                                                        @if ($tarefa->realizador != null)
+                                                            {{ $tarefa->realizador }}
                                                         @else
                                                             <button type="button"
                                                                 class="btn btn-success btn-primary btn-lg">
@@ -84,7 +87,6 @@
                                                 </td>
                                             </tr>
                                         @endif
-                                    @endif
                                 @endforeach
                             </tbody>
                         </table>

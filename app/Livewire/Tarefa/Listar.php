@@ -2,31 +2,39 @@
 
 namespace App\Livewire\Tarefa;
 
+use App\Models\PermissaoTarefa;
 use App\Models\Tarefa;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Listar extends Component
 {
-    public $tarefas;
+    public $permissaoTarefas;
     public $usuarioLogado;
 
     public function render()
     {
         $this->usuarioLogado = Auth::user();
-        $this->tarefas = $this->buscarTodasTarefas();
+        $this->permissaoTarefas = $this->buscarPermissoesTarefas();
         return view('livewire.tarefa.listar')
             ->layout("components.layouts.app");
     }
 
-    public function buscarTodasTarefas()
+    public function buscarPermissoesTarefas()
     {
-        return Tarefa::where(function ($query) {
-            $query->where("usuario_especifico", $this->usuarioLogado->id)
-                ->orWhereNull("usuario_especifico");
-        })->orWhere(function ($query) {
-            $query->where("criador", Auth::user()->id);
+        return PermissaoTarefa::all();
+    }
+
+    public function buscarTodasTarefas($idTarefa)
+    {
+        return Tarefa::where("id", $idTarefa)
+        ->where(function ($query) {
+            $query->where("tarefas.usuario_especifico", $this->usuarioLogado->id)
+                ->orWhereNull("tarefas.usuario_especifico");
         })
-            ->get();
+        ->orWhere(function ($query) {
+            $query->where("tarefas.criador", Auth::user()->id);
+        })
+        ->first();
     }
 }
