@@ -53,4 +53,14 @@ class Listar extends Component
             "tempo" => 4000,
         ]);
     }
+
+    public function eliminarTarefa($idTarefa){
+        $tarefa = Tarefa::find($idTarefa);
+        $tarefa->delete();
+        $this->dispatch("alerta", [
+            "icon" => "success",
+            "mensagem" => "Tarefa Eliminada com sucesso",
+            "tempo" => 4000,
+        ]);
+    }
 }

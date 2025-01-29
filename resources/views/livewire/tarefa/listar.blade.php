@@ -83,6 +83,7 @@
                                                     @if ($permissao->eliminar == 'permitido')
                                                         <button type="button" data-bs-toggle="tooltip" title=""
                                                             class="btn btn-link btn-danger"
+                                                            wire:click.prevent='eliminarTarefa({{$tarefa->id}})'
                                                             data-original-title="Remove">
                                                             <i class="fa fa-times"></i>
                                                         </button>
