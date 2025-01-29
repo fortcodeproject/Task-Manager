@@ -29,7 +29,11 @@ class AlterarSenha extends Component
     }
 
     public function verificarSenhaNova(){
-        dd("ok");
+        if($this->senhaNova != null && Hash::check($this->senhaNova, $this->usuario->password)){
+            $this->msgSenhaNova = "Senha nova deve ser diferente da actual";
+        }else{
+            $this->msgSenhaNova = null;
+        }
     }
 
     public function verificarSenhaConfirmacao(){
