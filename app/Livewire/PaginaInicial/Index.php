@@ -20,4 +20,8 @@ class Index extends Component
         return view('livewire.pagina-inicial.index')
         ->layout("components.layouts.app");
     }
+
+    public function buscarUsuario($idUsuario){
+        return User::find($idUsuario);
+    }
 }

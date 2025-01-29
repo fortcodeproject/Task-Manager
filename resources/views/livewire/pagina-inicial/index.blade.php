@@ -114,31 +114,39 @@
                     </thead>
                     <tbody>
                         @foreach ($tarefas as $tarefa)
-                                <tr>
-                                    <td>{{ $tarefa->id }}</td>
-                                    <td style="white-space: nowrap">{{ $tarefa->titulo }}</td>
-                                    <td>{{ $tarefa->descricao }}</td>
-                                    <td style="white-space: nowrap">
-                                        <button class="btn btn-icon btn-round btn-success btn-sm me-2">
-                                            <i class="fa fa-check"></i>
-                                        </button>
-                                        {{ ucwords($tarefa->estado) }}
-                                    </td>
-                                    <td style="white-space: nowrap">
-                                        @if ($tarefa->usuario_especifico != null)
-                                            {{ ucwords($tarefa->buscarUsuarioEspecifico->name) }}
-                                        @else
-                                            Vazio
-                                        @endif
-                                    </td>
-                                    <td>{{ ucwords($tarefa->situacao) }}</td>
-                                    <td style="white-space: nowrap">
-                                        {{ $tarefa->buscarUsuarioRealizador ?  ucwords($tarefa->buscarUsuarioRealizador->name) : "Vazio"}}
-                                    </td>
-                                    <td style="white-space: nowrap">
-                                        {{ ucwords($tarefa->buscarUsuarioCriador->name) }}
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>{{ $tarefa->id }}</td>
+                                <td style="white-space: nowrap">{{ $tarefa->titulo }}</td>
+                                <td>{{ $tarefa->descricao }}</td>
+                                <td style="white-space: nowrap">
+                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                    {{ ucwords($tarefa->estado) }}
+                                </td>
+                                <td style="white-space: nowrap">
+                                    @if ($tarefa->usuario_especifico != null)
+                                        {{ ucwords($tarefa->buscarUsuarioEspecifico->name) }}
+                                    @else
+                                        Vazio
+                                    @endif
+                                </td>
+                                <td>{{ ucwords($tarefa->situacao) }}</td>
+                                <td style="white-space: nowrap">
+                                    @php
+                                        $realizador = $this->buscarUsuario($tarefa->realizador);
+                                    @endphp
+
+                                    @if ($realizador != null)
+                                        {{ ucwords($realizador->name) }}
+                                    @else
+                                        Vazio
+                                    @endif
+                                </td>
+                                <td style="white-space: nowrap">
+                                    {{ ucwords($tarefa->buscarUsuarioCriador->name) }}
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
