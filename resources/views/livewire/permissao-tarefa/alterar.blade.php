@@ -7,6 +7,7 @@
             </div>
         </div>
 
+        <hr>
         <h3 class="fw-bold mb-3">Alterar Permissão</h3>
         <form class="row mb-3" wire:submit.prevent="alterarPermissao">
             <div class="col-6 mb-3">
@@ -116,7 +117,7 @@
                                         $tarefa = $this->buscarTodasTarefas($permissao->id_tarefa);
                                     @endphp
 
-                                    @if ($permissao->leitura == 'permitido' && $permissao->id_usuario != $usuarioLogado->id)
+                                    @if ($permissao->leitura == 'permitido')
                                         <tr>
                                             <td>{{ $permissao->id }}</td>
                                             <td style="white-space: nowrap">{{ $tarefa->titulo }}</td>

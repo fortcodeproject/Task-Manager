@@ -69,7 +69,7 @@ class Alterar extends Component
 
     public function buscarPermissoesTarefas()
     {
-        return PermissaoTarefa::all();
+        return PermissaoTarefa::where("id_usuario", "!=", Auth::user()->id)->get();
     }
 
     public function buscarTodasTarefas($idTarefa)

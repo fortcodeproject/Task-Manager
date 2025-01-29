@@ -64,21 +64,24 @@ class Criar extends Component
             $this->permitirTarefaCriador($idTarefa);
         } else {
             $this->permitirTarefaTodos($idTarefa);
-            $this->permitirTarefaCriador($idTarefa);
         }
     }
 
     public function permitirTarefaTodos($idTarefa)
     {
-        $usuarios = User::where("id", "!=", Auth::user()->id)->get();
+        $usuarios = User::all();
         foreach ($usuarios as $usuario) {
-            PermissaoTarefa::create([
-                'id_usuario' => $usuario->id,
-                'id_tarefa' => $idTarefa,
-                'editar' => "nao permitido",
-                'eliminar' => "nao permitido",
-                'leitura' => "permitido",
-            ]);
+            if(Auth::user()->id == $usuario->id){
+                $this->permitirTarefaCriador($idTarefa);
+            }else{
+                PermissaoTarefa::create([
+                    'id_usuario' => $usuario->id,
+                    'id_tarefa' => $idTarefa,
+                    'editar' => "nao permitido",
+                    'eliminar' => "nao permitido",
+                    'leitura' => "permitido",
+                ]);
+            }
         }
     }
 
