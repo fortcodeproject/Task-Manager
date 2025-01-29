@@ -27,21 +27,23 @@ class Listar extends Component
 
     public function buscarTodasTarefas($idTarefa)
     {
-        return Tarefa::where("id", $idTarefa)
-        ->where(function ($query) {
-            $query->where("usuario_especifico", $this->usuarioLogado->id)
-                ->orWhereNull("usuario_especifico");
-        })
-        ->orWhere(function ($query) {
-            $query->where("criador", Auth::user()->id);
-        })
-        ->first();
+        if (Auth::user()->id_acesso == 1) {
+            return Tarefa::where("id", $idTarefa)->first();
+        } else {
+            return Tarefa::where("id", $idTarefa)
+                ->where(function ($query) {
+                    $query->where("usuario_especifico", $this->usuarioLogado->id)
+                        ->orWhereNull("usuario_especifico");
+                })
+                ->first();
+        }
     }
 
-    public function realizarTarefa($idTarefa){
+    public function realizarTarefa($idTarefa)
+    {
         Tarefa::where("id", $idTarefa)->update([
             'realizador' => Auth::user()->id,
-            'estado' => "em andamento"
+            'estado' => "em andamento",
         ]);
 
         $this->dispatch("alerta", [
