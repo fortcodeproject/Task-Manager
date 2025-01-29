@@ -29,7 +29,10 @@ class Finalizar extends Component
     public function buscarTarefas()
     {
         return Tarefa::where("realizador", $this->usuarioLogado->id)
-            ->where("estado", "em andamento")
+            ->where(function ($query) {
+                $query->where("estado", "em andamento")
+                    ->orWhere("estado", "finalizado");
+            })
             ->get();
     }
 

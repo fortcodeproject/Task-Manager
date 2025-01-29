@@ -8,7 +8,7 @@
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-            <a href="{{route("inicio")}}" class="logo text-light" >
+            <a href="{{ route('inicio') }}" class="logo text-light">
                 <h3><i class="fas fa-edit"></i> Task Manager</h3>
             </a>
             <div class="nav-toggle">
@@ -58,26 +58,30 @@
                     </a>
                     <div class="collapse" id="tarerfas">
                         <ul class="nav nav-collapse">
+                            @if ($usuario->criacao_tarefa == 'permitido')
+                                <li>
+                                    <a href="{{ route('tarefa.criar') }}">
+                                        <span class="sub-item">Criar</span>
+                                    </a>
+                                </li>
+                            @endif
                             <li>
-                                <a href="{{route('tarefa.criar')}}">
-                                    <span class="sub-item">Criar</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{route('tarefa.listar')}}">
+                                <a href="{{ route('tarefa.listar') }}">
                                     <span class="sub-item">Listar</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('tarefa.finalizar')}}">
+                                <a href="{{ route('tarefa.finalizar') }}">
                                     <span class="sub-item">Finalizar</span>
                                 </a>
                             </li>
+                            @if ($usuario->criacao_tarefa == 'permitido')
                             <li>
-                                <a href="{{route('tarefa.permissao.alterar')}}">
+                                <a href="{{ route('tarefa.permissao.alterar') }}">
                                     <span class="sub-item">Alterar Permissão</span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
@@ -90,12 +94,12 @@
                     <div class="collapse" id="usuarios">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="{{route('usuario.criar')}}">
+                                <a href="{{ route('usuario.criar') }}">
                                     <span class="sub-item">Criar</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('usuario.listar')}}">
+                                <a href="{{ route('usuario.listar') }}">
                                     <span class="sub-item">Listar</span>
                                 </a>
                             </li>
