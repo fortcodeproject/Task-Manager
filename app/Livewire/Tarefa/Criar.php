@@ -3,12 +3,15 @@
 namespace App\Livewire\Tarefa;
 
 use App\Models\Tarefa;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Criar extends Component
 {
     public $titulo, $usuarioEspecifico, $descricao;
+    public $usuarios;
+    public $tarefas, $trPendentes, $trAndamento, $trFinalizadas;
 
     protected $rules = [
         "titulo" => "required",
@@ -22,12 +25,18 @@ class Criar extends Component
 
     public function render()
     {
-        return view('livewire.tarefa.criar');
+        $this->usuarios = User::where("id_acesso", "!=", 1)->get();
+        $this->tarefas = Tarefa::all(); 
+        $this->trPendentes = Tarefa::where("estado", "pendente")->get();  
+        $this->trAndamento = Tarefa::where("estado", "em andamento")->get();  
+        $this->trFinalizadas = Tarefa::where("estado", "finalizado")->get();  
+        return view('livewire.tarefa.criar')
+        ->layout("components.layouts.app");
     }
 
     public function criar(){
         $this->validate();
-        
+
         Tarefa::create([
             'titulo' => $this->titulo,
             'descricao'=> $this->descricao,

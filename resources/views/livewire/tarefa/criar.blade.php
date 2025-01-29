@@ -19,7 +19,7 @@
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
                                     <p class="card-category">Tarefas</p>
-                                    <h4 class="card-title">1303</h4>
+                                    <h4 class="card-title">{{ count($tarefas) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
                                     <p class="card-category">Tarefas Pendentes</p>
-                                    <h4 class="card-title">$ 1,345</h4>
+                                    <h4 class="card-title">{{ count($trPendentes) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
                                     <p class="card-category">Em Andamento</p>
-                                    <h4 class="card-title">1303</h4>
+                                    <h4 class="card-title">{{ count($trAndamento) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
                                     <p class="card-category">Finalizadas</p>
-                                    <h4 class="card-title">576</h4>
+                                    <h4 class="card-title">{{ count($trFinalizadas) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -102,6 +102,9 @@
                 <p class="card-category">Usuário Especifíco:</p>
                 <select class="form-select" wire:model='usuarioEspecifico'>
                     <option class="d-none">Selecione...</option>
+                    @foreach ($usuarios as $item)
+                        <option value="{{ $item->id }}">{{ ucwords($item->name) }}</option>
+                    @endforeach
                 </select>
             </div>
 
