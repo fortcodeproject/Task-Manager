@@ -40,8 +40,13 @@
 
     <div>
         <hr>
-        <div class="text-end">
-            <i class="fa-brands fa-dev"></i> Eugénio Cachiombo
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="text-start">
+                &copy; Task Manager 2025
+            </div>
+            <div class="text-end">
+                <i class="fa-brands fa-dev"></i> Eugénio Cachiombo
+            </div>
         </div>
     </div>
 </div>

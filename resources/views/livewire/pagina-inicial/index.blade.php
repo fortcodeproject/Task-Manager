@@ -3,11 +3,7 @@
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
             <div>
                 <h3 class="fw-bold mb-3">Página Inicial</h3>
-                <h6 class="op-7 mb-2">Free Bootstrap 5 Admin Dashboard</h6>
-            </div>
-            <div class="ms-md-auto py-2 py-md-0">
-                <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
-                <a href="#" class="btn btn-primary btn-round">Add Customer</a>
+                <h6 class="op-7 mb-2">Seja Bem-vindo</h6>
             </div>
         </div>
         <div class="row">
@@ -22,7 +18,7 @@
                             </div>
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
-                                    <p class="card-category">Visitors</p>
+                                    <p class="card-category">Usuários</p>
                                     <h4 class="card-title">1,294</h4>
                                 </div>
                             </div>
@@ -36,12 +32,12 @@
                         <div class="row align-items-center">
                             <div class="col-icon">
                                 <div class="icon-big text-center icon-info bubble-shadow-small">
-                                    <i class="fas fa-user-check"></i>
+                                    <i class="fas fa-edit"></i>
                                 </div>
                             </div>
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
-                                    <p class="card-category">Subscribers</p>
+                                    <p class="card-category">Tarefas</p>
                                     <h4 class="card-title">1303</h4>
                                 </div>
                             </div>
@@ -55,12 +51,12 @@
                         <div class="row align-items-center">
                             <div class="col-icon">
                                 <div class="icon-big text-center icon-success bubble-shadow-small">
-                                    <i class="fas fa-luggage-cart"></i>
+                                    <i class="fas fa-spinner"></i>
                                 </div>
                             </div>
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
-                                    <p class="card-category">Sales</p>
+                                    <p class="card-category">Tarefas Pendentes</p>
                                     <h4 class="card-title">$ 1,345</h4>
                                 </div>
                             </div>
@@ -79,7 +75,7 @@
                             </div>
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
-                                    <p class="card-category">Order</p>
+                                    <p class="card-category">Tarefas Finalizadas</p>
                                     <h4 class="card-title">576</h4>
                                 </div>
                             </div>
