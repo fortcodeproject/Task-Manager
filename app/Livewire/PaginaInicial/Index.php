@@ -13,7 +13,7 @@ class Index extends Component
     public function render()
     {
         $this->usuarios = User::where("id_acesso", "!=", 1)->get();
-        $this->tarefas = Tarefa::all();
+        $this->tarefas = Tarefa::where("estado", "finalizado")->get();
         $this->trPendentes = Tarefa::where("estado", "pendente")->get();
         $this->trFinalizadas = Tarefa::where("estado", "finalizado")->get();
         
