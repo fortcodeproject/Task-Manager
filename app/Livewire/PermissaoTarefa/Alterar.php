@@ -45,7 +45,7 @@ class Alterar extends Component
     public function alterarPermissao(){
         $this->validate();
 
-        PermissaoTarefa::create([
+        PermissaoTarefa::where("id", $this->idPermissao)->update([
             'id_usuario' => $this->idUsuario,
             'id_tarefa' => $this->idTarefa,
             'editar' => $this->editar,
