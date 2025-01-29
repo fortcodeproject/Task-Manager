@@ -5,7 +5,10 @@ namespace App\Livewire\Tarefa;
 use App\Models\PermissaoTarefa;
 use App\Models\Tarefa;
 use App\Models\User;
+use App\Notifications\Notificacao;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 class Criar extends Component
@@ -36,7 +39,7 @@ class Criar extends Component
             ->layout("components.layouts.app");
     }
 
-    public function criar()
+    public function criar(Request $request)
     {
         $this->validate();
 
@@ -54,8 +57,17 @@ class Criar extends Component
             "mensagem" => "Tarefa criada com sucesso",
             "tempo" => 4000,
         ]);
-
+        $this->notificarTodosUsuarios($this->titulo);
         $this->limparCampos();
+    }
+
+    public function notificarTodosUsuarios($titulo){
+        $usuarioLogado = Auth::user();
+        $todosUsuarios = User::where("id", "!=", $usuarioLogado->id)->get(); 
+        $descricao = "Uma tarefa foi criada com o titulo de: " . $titulo . " criado por " . ucwords($usuarioLogado->name);
+        foreach ($todosUsuarios as $usuario) {
+            Notification::send($usuario, new Notificacao($descricao));
+        }
     }
 
     public function criarPermissao($idTarefa)
