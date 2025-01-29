@@ -70,11 +70,15 @@
                                     <span class="sub-item">Listar</span>
                                 </a>
                             </li>
+
+                            @if ($usuario->id_acesso == 2)
                             <li>
                                 <a href="{{ route('tarefa.finalizar') }}">
                                     <span class="sub-item">Finalizar</span>
                                 </a>
                             </li>
+                            @endif
+
                             @if ($usuario->criacao_tarefa == 'permitido')
                                 <li>
                                     <a href="{{ route('tarefa.permissao.alterar') }}">
