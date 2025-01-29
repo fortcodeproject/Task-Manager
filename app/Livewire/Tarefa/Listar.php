@@ -29,12 +29,24 @@ class Listar extends Component
     {
         return Tarefa::where("id", $idTarefa)
         ->where(function ($query) {
-            $query->where("tarefas.usuario_especifico", $this->usuarioLogado->id)
-                ->orWhereNull("tarefas.usuario_especifico");
+            $query->where("usuario_especifico", $this->usuarioLogado->id)
+                ->orWhereNull("usuario_especifico");
         })
         ->orWhere(function ($query) {
-            $query->where("tarefas.criador", Auth::user()->id);
+            $query->where("criador", Auth::user()->id);
         })
         ->first();
+    }
+
+    public function realizarTarefa($idTarefa){
+        Tarefa::where("id", $idTarefa)->update([
+            'realizador' => Auth::user()->id
+        ]);
+
+        $this->dispatch("alerta", [
+            "icon" => "success",
+            "mensagem" => "Tarefa Em Andamento",
+            "tempo" => 4000,
+        ]);
     }
 }

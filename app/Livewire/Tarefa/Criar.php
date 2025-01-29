@@ -45,14 +45,7 @@ class Criar extends Component
             'criador' => Auth::user()->id,
             'realizador' => null
         ]);
-
-        PermissaoTarefa::create([
-            'id_usuario' => Auth::user()->id,
-            'id_tarefa' => $tarefa->id,
-            'editar' => "permitido",
-            'eliminar' => "permitido",
-            'leitura' => "permitido"
-        ]);
+        $this->criarPermissao($tarefa->id);
 
         $this->dispatch("alerta", [
             "icon" => "success",
@@ -61,6 +54,26 @@ class Criar extends Component
         ]);
 
         $this->limparCampos();
+    }
+
+    public function criarPermissao( $idTarefa){
+        PermissaoTarefa::create([
+            'id_usuario' => Auth::user()->id,
+            'id_tarefa' => $idTarefa,
+            'editar' => "permitido",
+            'eliminar' => "permitido",
+            'leitura' => "permitido"
+        ]);
+
+        if($this->usuarioEspecifico != null){
+            PermissaoTarefa::create([
+                'id_usuario' => $this->usuarioEspecifico,
+                'id_tarefa' => $idTarefa,
+                'editar' => "permitido",
+                'eliminar' => "permitido",
+                'leitura' => "permitido"
+            ]);
+        }
     }
 
     public function limparCampos(){
