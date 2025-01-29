@@ -21,7 +21,6 @@ return new class extends Migration
             $table->enum("situacao", ["activa", "inactiva"])->default("activa");
             $table->unsignedBigInteger('criador');
             $table->foreign("criador")->references("id")->on("users")->onDelete("cascade");
-            $table->timestamps();
             $table->unsignedBigInteger('realizador')->nullable();
             $table->foreign("realizador")->references("id")->on("users")->onDelete("cascade");
             $table->timestamps();

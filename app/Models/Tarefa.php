@@ -12,6 +12,7 @@ class Tarefa extends Model
         'estado',
         'usuario_especifico',
         'situacao',
-        'criador'
+        'criador',
+        'realizador'
     ];
 }
