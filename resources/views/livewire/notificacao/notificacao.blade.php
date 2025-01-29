@@ -1,8 +1,8 @@
 <div>
     <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-bell"></i>
-        <span class="notification">4</span>
+        <i class="fa fa-bell" style="font-size: 25px"></i>
+        <span class="notification bg-primary" style="font-size: 15px">{{count($notificacoesNaoLidas)}}</span>
     </a>
     <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
         <li>

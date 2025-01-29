@@ -31,12 +31,6 @@ class Index extends Component
         return User::find($idUsuario);
     }
 
-    public function buscarNotificacoes(){
-        $usuario = Auth::user();
-        $notificacaos = $usuario->unreadNotifications;
-      //  dd($notificacaos);
-    }
-
     public function verificarValidadeTarefas(){
         $todasTarefas = Tarefa::all();
         foreach ($todasTarefas as $value) {

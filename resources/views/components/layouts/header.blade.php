@@ -40,7 +40,7 @@
 
             <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                 <li class="nav-item topbar-icon dropdown hidden-caret">
-                @livewire('notificacao.notificacao')
+                    @livewire('notificacao.notificacao')
                 </li>
                 <li class="nav-item topbar-user dropdown hidden-caret">
                     <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
@@ -50,7 +50,7 @@
                         </div>
                         <span class="profile-username">
                             <span class="op-7"></span>
-                            <span class="fw-bold">{{ucwords($usuario->name)}}</span>
+                            <span class="fw-bold">{{ ucwords($usuario->name) }}</span>
                         </span>
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -61,15 +61,17 @@
                                         <i class="fas fa-user" style="font-size: 50px"></i>
                                     </div>
                                     <div class="u-text">
-                                        <h4>{{ucwords($usuario->name)}}</h4>
-                                        <p class="text-muted">{{$usuario->email}}</p>
-                                        <a href="{{ route('usuario.perfil', $usuario->id) }}" class="btn btn-xs btn-secondary btn-sm">Ver Perfil</a>
+                                        <h4>{{ ucwords($usuario->name) }}</h4>
+                                        <p class="text-muted">{{ $usuario->email }}</p>
+                                        <a href="{{ route('usuario.perfil', $usuario->id) }}"
+                                            class="btn btn-xs btn-secondary btn-sm">Ver Perfil</a>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('usuario.actualizar.dados', $usuario->id) }}">Actualizar Dados</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('usuario.actualizar.dados', $usuario->id) }}">Actualizar Dados</a>
                                 <a class="dropdown-item" href="{{ route('usuario.alterar.senha') }}">Alterar Senha</a>
                                 <a class="dropdown-item" href="{{ route('usuario.sair') }}">Sair</a>
                             </li>

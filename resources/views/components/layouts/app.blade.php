@@ -39,6 +39,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all6.css') }}">
+    
+    @livewireStyles
 </head>
 
 <body>
