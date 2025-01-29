@@ -1,3 +1,167 @@
-<div>
-    {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
+<div class="container ">
+    <div class="page-inner">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+            <div>
+                <h3 class="fw-bold mb-3">Permissão</h3>
+                <h6 class="op-7 mb-2">Criar uma permissão</h6>
+            </div>
+        </div>
+        {{--<div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-info bubble-shadow-small">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Tarefas</p>
+                                    <h4 class="card-title">{{ count($tarefas) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-success bubble-shadow-small">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Tarefas Pendentes</p>
+                                    <h4 class="card-title">{{ count($trPendentes) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                    <i class="fas fa-spinner"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Em Andamento</p>
+                                    <h4 class="card-title">{{ count($trAndamento) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                                    <i class="far fa-check-circle"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Finalizadas</p>
+                                    <h4 class="card-title">{{ count($trFinalizadas) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>--}}
+
+        <h3 class="fw-bold mb-3">Criar Permissão</h3>
+        <form class="row" wire:submit.prevent="criar">
+            <div class="col-6 mb-3">
+                <p class="card-category">Usuário:</p>
+                <select class="form-select" wire:model='idUsuario'>
+                    <option class="d-none">Selecione...</option>
+                    @foreach ($usuarios as $item)
+                        <option value="{{ $item->id }}">{{ ucwords($item->name) }}</option>
+                    @endforeach
+                </select>
+                <div class="text-danger">
+                    @error('idUsuario')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-6 mb-3">
+                <p class="card-category">Tarefas:</p>
+                <select class="form-select" wire:model='idTarefa'>
+                    <option class="d-none">Selecione...</option>
+                    @foreach ($tarefas as $item)
+                        <option value="{{ $item->id }}">{{ ucwords($item->titulo) }}</option>
+                    @endforeach
+                </select>
+                <div class="text-danger">
+                    @error('idTarefa')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-6 mb-3">
+                <p class="card-category">Editar:</p>
+                <select class="form-select" wire:model='editar'>
+                    <option class="d-none">Selecione...</option>
+                    <option value="permitido">Permitido</option>
+                    <option value="nao permitido">Não Permitido</option>
+                </select>
+                <div class="text-danger">
+                    @error('editar')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-6 mb-3">
+                <p class="card-category">Eliminar:</p>
+                <select class="form-select" wire:model='eliminar'>
+                    <option class="d-none">Selecione...</option>
+                    <option value="permitido">Permitido</option>
+                    <option value="nao permitido">Não Permitido</option>
+                </select>
+                <div class="text-danger">
+                    @error('eliminar')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-6 mb-3">
+                <p class="card-category">Leitura:</p>
+                <select class="form-select" wire:model='leitura'>
+                    <option class="d-none">Selecione...</option>
+                    <option value="permitido">Permitido</option>
+                    <option value="nao permitido">Não Permitido</option>
+                </select>
+                <div class="text-danger">
+                    @error('leitura')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-12 mb-3">
+                <button class="btn btn-primary">Criar Permissão</button>
+            </div>
+        </form>
+    </div>
 </div>
