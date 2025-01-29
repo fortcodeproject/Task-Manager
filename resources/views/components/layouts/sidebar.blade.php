@@ -8,7 +8,7 @@
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo text-light" >
+            <a href="{{route("inicio")}}" class="logo text-light" >
                 <h3><i class="fas fa-edit"></i> Task Manager</h3>
             </a>
             <div class="nav-toggle">
