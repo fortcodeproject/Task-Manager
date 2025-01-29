@@ -5,11 +5,12 @@ use App\Livewire\Usuario\{
     Autenticacao,
     Perfil, 
     ActualizarDados,
+    Criar as CriarUsuario,
     AlterarSenha
 };
 use App\Livewire\Tarefa\{
-    Criar,
-    Listar
+    Criar as CriarTarefa,
+    Listar as ListarTarefa
 };
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ Route::prefix("/usuario")->name("usuario.")->group(function(){
     Route::get("/perfil/{idUsuario}", Perfil::class)->name("perfil");
     Route::get("/actualizar/dados/{idUsuario}", ActualizarDados::class)->name("actualizar.dados");
     Route::get("/alterar/senha", AlterarSenha::class)->name("alterar.senha");
+    Route::get("/criar", CriarUsuario::class)->name("criar");
     Route::get("/sair", function() {
         Auth::logout();
         return redirect()->route("usuario.autenticacao");
@@ -29,7 +31,7 @@ Route::prefix("/usuario")->name("usuario.")->group(function(){
 });
 
 Route::prefix("/tarefa")->name("tarefa.")->group(function(){
-    Route::get("/criar", Criar::class)->name("criar");
-    Route::get("/listar", Listar::class)->name("listar");
+    Route::get("/criar", CriarTarefa::class)->name("criar");
+    Route::get("/listar", ListarTarefa::class)->name("listar");
 });
 

@@ -80,7 +80,7 @@
                     <div class="collapse" id="usuarios">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="">
+                                <a href="{{route('usuario.criar')}}">
                                     <span class="sub-item">Criar</span>
                                 </a>
                             </li>
