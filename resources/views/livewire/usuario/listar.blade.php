@@ -40,6 +40,7 @@
                                         <td>
                                             <div class="form-button-action">
                                                 <button type="button" data-bs-toggle="tooltip" title=""
+                                                wire:click.prevent='eliminarUsuario({{$item->id}})'
                                                     class="btn btn-link btn-danger" data-original-title="Remove">
                                                     <i class="fa fa-times"></i>
                                                 </button>

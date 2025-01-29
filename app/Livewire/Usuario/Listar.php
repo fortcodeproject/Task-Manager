@@ -15,4 +15,14 @@ class Listar extends Component
         return view('livewire.usuario.listar')
         ->layout("components.layouts.app");
     }
+
+    public function eliminarUsuario($idUsuario){
+        $usuario = User::find($idUsuario);
+        $usuario->delete();
+        $this->dispatch("alerta", [
+            "icon" => "success",
+            "mensagem" => "Usuário Eliminada com sucesso",
+            "tempo" => 4000,
+        ]);
+    }
 }
