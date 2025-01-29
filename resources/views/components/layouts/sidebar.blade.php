@@ -76,36 +76,40 @@
                                 </a>
                             </li>
                             @if ($usuario->criacao_tarefa == 'permitido')
-                            <li>
-                                <a href="{{ route('tarefa.permissao.alterar') }}">
-                                    <span class="sub-item">Alterar Permissão</span>
-                                </a>
-                            </li>
+                                <li>
+                                    <a href="{{ route('tarefa.permissao.alterar') }}">
+                                        <span class="sub-item">Alterar Permissão</span>
+                                    </a>
+                                </li>
                             @endif
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#usuarios">
-                        <i class="fas fa-users"></i>
-                        <p>Usuários</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="usuarios">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="{{ route('usuario.criar') }}">
-                                    <span class="sub-item">Criar</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('usuario.listar') }}">
-                                    <span class="sub-item">Listar</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+
+                @if ($usuario->id_acesso == 1)
+                    <li class="nav-item">
+                        <a data-bs-toggle="collapse" href="#usuarios">
+                            <i class="fas fa-users"></i>
+                            <p>Usuários</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="usuarios">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{ route('usuario.criar') }}">
+                                        <span class="sub-item">Criar</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('usuario.listar') }}">
+                                        <span class="sub-item">Listar</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
