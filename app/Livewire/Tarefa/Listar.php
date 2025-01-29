@@ -11,6 +11,7 @@ class Listar extends Component
 {
     public $permissaoTarefas;
     public $usuarioLogado;
+    public $permicaoUsuarioLogado = array();
 
     public function render()
     {

@@ -53,8 +53,6 @@
                                             <td style="white-space: nowrap">
                                                 {{ ucwords($tarefa->buscarUsuarioCriador->name) }}
                                             </td>
-
-
                                             <td>
                                                 @if ($tarefa->realizador != null)
                                                     {{ ucwords($tarefa->buscarUsuarioRealizador->name) }}
@@ -70,19 +68,23 @@
                                                     @endif
                                                 @endif
                                             </td>
-
-
                                             <td>
                                                 <div class="form-button-action">
-                                                    <button type="button" data-bs-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        data-original-title="Edit Task">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" data-bs-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-danger" data-original-title="Remove">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
+                                                    @if ($permissao->editar == 'permitido')
+                                                        <button type="button" data-bs-toggle="tooltip" title=""
+                                                            class="btn btn-link btn-primary btn-lg"
+                                                            data-original-title="Edit Task">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                    @endif
+
+                                                    @if ($permissao->eliminar == 'permitido')
+                                                        <button type="button" data-bs-toggle="tooltip" title=""
+                                                            class="btn btn-link btn-danger"
+                                                            data-original-title="Remove">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>
