@@ -24,39 +24,54 @@
                     <div class="row">
                         <form wire:submit.prevent="alterar">
                             <div class="col-6 mb-3">
-                                <p class="card-category">Senha Antiga:</p>
-                                <input type="text" wire:model='senhaAntiga' class="form-control" placeholder="Digite a senha antiga"
-                                    name="senhaAntiga">
+                                <p class="card-category">Senha Actual:</p>
+                                <input type="text" wire:model='senhaActual' class="form-control"
+                                    placeholder="Digite a senha actual" name="senhaActual"
+                                    wire:keyup='verificarSenhaActual'>
                                 <div class="text-danger">
-                                    @error('senhaAntiga')
-                                        {{ $message }}
-                                    @enderror
+                                    @if ($msgSenhaActual != null)
+                                        {{ $msgSenhaActual }}
+                                    @else
+                                        @error('senhaActual')
+                                            {{ $message }}
+                                        @enderror
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="col-6 mb-3">
                                 <p class="card-category">Senha Nova:</p>
-                                <input type="text" wire:model='senhaNova' class="form-control" placeholder="Digite a senha nova"
-                                    name="senhaNova">
+                                <input type="text" wire:model='senhaNova' class="form-control"
+                                    placeholder="Digite a senha nova" 
+                                    name="senhaNova" wire:keyup='verificarSenhaNova'>
                                 <div class="text-danger">
-                                    @error('senhaNova')
-                                        {{ $message }}
-                                    @enderror
+                                    @if ($msgSenhaNova != null)
+                                        {{ $msgSenhaNova }}
+                                    @else
+                                        @error('senhaNova')
+                                            {{ $message }}
+                                        @enderror
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="col-6 mb-3">
                                 <p class="card-category">Confirmar senha:</p>
-                                <input type="text" wire:model='senhaConfirmacao' class="form-control" placeholder="Digite a senha de confirmação"
-                                    name="senhaConfirmacao">
+                                <input type="text" wire:model='senhaConfirmacao' class="form-control"
+                                    placeholder="Digite a senha de confirmação"
+                                     name="senhaConfirmacao" wire:keyup='verificarSenhaConfirmacao'>
                                 <div class="text-danger">
-                                    @error('senhaConfirmacao')
-                                        {{ $message }}
-                                    @enderror
+                                    @if ($msgSenhaConfirmacao != null)
+                                        {{ $msgSenhaConfirmacao }}
+                                    @else
+                                        @error('senhaConfirmacao')
+                                            {{ $message }}
+                                        @enderror
+                                    @endif
                                 </div>
                             </div>
 
-                            
+
                             <div class="col-12 mb-3">
                                 <button class="btn btn-primary"><i class="fas fa-pen"></i> Alterar</button>
                             </div>
