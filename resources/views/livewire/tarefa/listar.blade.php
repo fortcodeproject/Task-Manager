@@ -33,27 +33,25 @@
                             <tbody>
                                 @foreach ($tarefas as $item)
                                     <tr>
-                                        <td >{{ $item->id }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td style="white-space: nowrap">{{ $item->titulo }}</td>
                                         <td>{{ $item->descricao }}</td>
                                         <td>{{ ucwords($item->estado) }}</td>
-                                        <td>
-                                            @php
-                                                if ($item->usuario_especifico != null) {
-                                                    echo $item->usuario_especifico;
-                                                } else {
-                                                    echo 'Vazio';
-                                                }
-                                            @endphp
+                                        <td style="white-space: nowrap">
+                                            @if ($item->usuario_especifico != null)
+                                                {{ ucwords($item->buscarUsuarioEspecifico->name) }}
+                                            @else
+                                                Vazio
+                                            @endif
                                         </td>
                                         <td>{{ ucwords($item->situacao) }}</td>
-                                        <td style="white-space: nowrap">{{ ucwords($item->buscarUsuarioCriador->name) }}</td>
+                                        <td style="white-space: nowrap">{{ ucwords($item->buscarUsuarioCriador->name) }}
+                                        </td>
                                         <td>
                                             @if ($item->realizador != null)
                                                 {{ $item->realizador }}
                                             @else
-                                                <button type="button" 
-                                                    class="btn btn-success btn-primary btn-lg">
+                                                <button type="button" class="btn btn-success btn-primary btn-lg">
                                                     Realizar
                                                 </button>
                                             @endif
