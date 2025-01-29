@@ -14,7 +14,14 @@ class Listar extends Component
     public function render()
     {
         $this->usuarioLogado = Auth::user();
-        $this->tarefas = Tarefa::all();
+        $this->tarefas = Tarefa::where(function ($query) {
+            $query->where("usuario_especifico", $this->usuarioLogado->id)
+                  ->orWhereNull("usuario_especifico");
+        })->orWhere(function ($query) {
+            $query->where("criador", Auth::user()->id);
+        })
+        ->get();
+    
         return view('livewire.tarefa.listar')
         ->layout("components.layouts.app");
     }
