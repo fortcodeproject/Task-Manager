@@ -23,4 +23,8 @@ class Tarefa extends Model
     public function buscarUsuarioEspecifico(){
         return $this->belongsTo(User::class, "usuario_especifico", "id");
      }
+
+    public function buscarPermissao(){
+        return $this->belongsTo(PermissaoTarefa::class, "id", "id_tarefa");
+    }
 }

@@ -36,48 +36,55 @@
                             </thead>
                             <tbody>
                                 @foreach ($tarefas as $item)
-                                    <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td style="white-space: nowrap">{{ $item->titulo }}</td>
-                                        <td>{{ $item->descricao }}</td>
-                                        <td>{{ ucwords($item->estado) }}</td>
-                                        <td style="white-space: nowrap">
-                                            @if ($item->usuario_especifico != null)
-                                                {{ ucwords($item->buscarUsuarioEspecifico->name) }}
-                                            @else
-                                                Vazio
-                                            @endif
-                                        </td>
-                                        <td>{{ ucwords($item->situacao) }}</td>
-                                        <td style="white-space: nowrap">{{ ucwords($item->buscarUsuarioCriador->name) }}
-                                        </td>
+                                    @if ($item->buscarPermissao)
+                                        @if ($item->buscarPermissao->leitura == 'permitido' || $usuarioLogado->id_acesso == 1)
+                                            <tr>
+                                                <td>{{ $item->id }}</td>
+                                                <td style="white-space: nowrap">{{ $item->titulo }}</td>
+                                                <td>{{ $item->descricao }}</td>
+                                                <td>{{ ucwords($item->estado) }}</td>
+                                                <td style="white-space: nowrap">
+                                                    @if ($item->usuario_especifico != null)
+                                                        {{ ucwords($item->buscarUsuarioEspecifico->name) }}
+                                                    @else
+                                                        Vazio
+                                                    @endif
+                                                </td>
+                                                <td>{{ ucwords($item->situacao) }}</td>
+                                                <td style="white-space: nowrap">
+                                                    {{ ucwords($item->buscarUsuarioCriador->name) }}
+                                                </td>
 
-                                        @if ($usuarioLogado->id_acesso == 2)
-                                            <td>
-                                                @if ($item->realizador != null)
-                                                    {{ $item->realizador }}
-                                                @else
-                                                    <button type="button" class="btn btn-success btn-primary btn-lg">
-                                                        Realizar
-                                                    </button>
+                                                @if ($usuarioLogado->id_acesso == 2)
+                                                    <td>
+                                                        @if ($item->realizador != null)
+                                                            {{ $item->realizador }}
+                                                        @else
+                                                            <button type="button"
+                                                                class="btn btn-success btn-primary btn-lg">
+                                                                Realizar
+                                                            </button>
+                                                        @endif
+                                                    </td>
                                                 @endif
-                                            </td>
-                                        @endif
 
-                                        <td>
-                                            <div class="form-button-action">
-                                                <button type="button" data-bs-toggle="tooltip" title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    data-original-title="Edit Task">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" data-bs-toggle="tooltip" title=""
-                                                    class="btn btn-link btn-danger" data-original-title="Remove">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                <td>
+                                                    <div class="form-button-action">
+                                                        <button type="button" data-bs-toggle="tooltip" title=""
+                                                            class="btn btn-link btn-primary btn-lg"
+                                                            data-original-title="Edit Task">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" data-bs-toggle="tooltip" title=""
+                                                            class="btn btn-link btn-danger"
+                                                            data-original-title="Remove">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>

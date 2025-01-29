@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Tarefa;
 
+use App\Models\PermissaoTarefa;
 use App\Models\Tarefa;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -37,12 +38,20 @@ class Criar extends Component
     public function criar(){
         $this->validate();
 
-        Tarefa::create([
+        $tarefa = Tarefa::create([
             'titulo' => $this->titulo,
             'descricao'=> $this->descricao,
             'usuario_especifico' => $this->usuarioEspecifico ? $this->usuarioEspecifico : null,
             'criador' => Auth::user()->id,
             'realizador' => null
+        ]);
+
+        PermissaoTarefa::create([
+            'id_usuario' => Auth::user()->id,
+            'id_tarefa' => $tarefa->id,
+            'editar' => "permitido",
+            'eliminar' => "permitido",
+            'leitura' => "permitido"
         ]);
 
         $this->dispatch("alerta", [
