@@ -69,8 +69,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('tarefa.permissao.criar')}}">
-                                    <span class="sub-item">Criar Permissão</span>
+                                <a href="{{route('tarefa.permissao.alterar')}}">
+                                    <span class="sub-item">Alterar Permissão</span>
                                 </a>
                             </li>
                         </ul>

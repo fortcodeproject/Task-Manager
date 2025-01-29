@@ -2,10 +2,90 @@
     <div class="page-inner">
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
             <div>
-                <h3 class="fw-bold mb-3">Tarefas</h3>
-                <h6 class="op-7 mb-2">Listagem de todas as tarefas</h6>
+                <h3 class="fw-bold mb-3">Alteraração de Permissões</h3>
+                <h6 class="op-7 mb-2">Alterar Permissões de Tarefas</h6>
             </div>
         </div>
+
+        <h3 class="fw-bold mb-3">Alterar Permissão</h3>
+        <form class="row mb-3" wire:submit.prevent="alterarPermissao">
+            <div class="col-6 mb-3">
+                <p class="card-category">Usuário:</p>
+                <select class="form-select" wire:model='idUsuario'>
+                    <option class="d-none">Selecione...</option>
+                    @foreach ($usuarios as $item)
+                        <option value="{{ $item->id }}">{{ ucwords($item->name) }}</option>
+                    @endforeach
+                </select>
+                <div class="text-danger">
+                    @error('idUsuario')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-6 mb-3">
+                <p class="card-category">Tarefas:</p>
+                <select class="form-select" wire:model='idTarefa'>
+                    <option class="d-none">Selecione...</option>
+                    @foreach ($tarefas as $item)
+                        <option value="{{ $item->id }}">{{ ucwords($item->titulo) }}</option>
+                    @endforeach
+                </select>
+                <div class="text-danger">
+                    @error('idTarefa')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-6 mb-3">
+                <p class="card-category">Editar:</p>
+                <select class="form-select" wire:model='editar'>
+                    <option class="d-none">Selecione...</option>
+                    <option value="permitido">Permitido</option>
+                    <option value="nao permitido">Não Permitido</option>
+                </select>
+                <div class="text-danger">
+                    @error('editar')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-6 mb-3">
+                <p class="card-category">Eliminar:</p>
+                <select class="form-select" wire:model='eliminar'>
+                    <option class="d-none">Selecione...</option>
+                    <option value="permitido">Permitido</option>
+                    <option value="nao permitido">Não Permitido</option>
+                </select>
+                <div class="text-danger">
+                    @error('eliminar')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-6 mb-3">
+                <p class="card-category">Leitura:</p>
+                <select class="form-select" wire:model='leitura'>
+                    <option class="d-none">Selecione...</option>
+                    <option value="permitido">Permitido</option>
+                    <option value="nao permitido">Não Permitido</option>
+                </select>
+                <div class="text-danger">
+                    @error('leitura')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-12 mb-3">
+                <button class="btn btn-primary">Alterar Permissão</button>
+            </div>
+        </form>
+        <hr>
 
         <div class="col-md-12">
             <div class="card">
@@ -36,9 +116,9 @@
                                         $tarefa = $this->buscarTodasTarefas($permissao->id_tarefa);
                                     @endphp
 
-                                    @if ($permissao->leitura == 'permitido' && $permissao->id_usuario == $usuarioLogado->id)
+                                    @if ($permissao->leitura == 'permitido' && $permissao->id_usuario != $usuarioLogado->id)
                                         <tr>
-                                            <td>{{ $tarefa->id }}</td>
+                                            <td>{{ $permissao->id }}</td>
                                             <td style="white-space: nowrap">{{ $tarefa->titulo }}</td>
                                             <td>{{ $tarefa->descricao }}</td>
                                             <td style="white-space: nowrap">{{ ucwords($tarefa->estado) }}</td>
@@ -70,21 +150,12 @@
                                             </td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    @if ($permissao->editar == 'permitido')
-                                                        <button type="button" data-bs-toggle="tooltip" title=""
-                                                            class="btn btn-link btn-primary btn-lg"
-                                                            data-original-title="Edit Task">
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>
-                                                    @endif
-
-                                                    @if ($permissao->eliminar == 'permitido')
-                                                        <button type="button" data-bs-toggle="tooltip" title=""
-                                                            class="btn btn-link btn-danger"
-                                                            data-original-title="Remove">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    @endif
+                                                    <button type="button" data-bs-toggle="tooltip" title=""
+                                                        class="btn btn-link btn-primary btn-lg"
+                                                        data-original-title="Edit Task" 
+                                                        wire:click.prevent='preencharFormulario({{$permissao->id}})'>
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>

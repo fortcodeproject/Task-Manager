@@ -5,10 +5,14 @@ namespace App\Livewire\PermissaoTarefa;
 use App\Models\PermissaoTarefa;
 use App\Models\Tarefa;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Criar extends Component
+class Alterar extends Component
 {
+    public $permissaoTarefas;
+    public $usuarioLogado;
+    public $idPermissao;
     public $usuarios, $tarefas;
     public $idUsuario, $idTarefa, $editar, $eliminar, $leitura;
 
@@ -30,13 +34,15 @@ class Criar extends Component
 
     public function render()
     {
-        $this->usuarios = User::where("id_acesso", "!=", 1)->get();
         $this->tarefas = Tarefa::all(); 
-        return view('livewire.permissao-tarefa.criar')
+        $this->usuarios = User::where("id_acesso", "!=", 1)->get();
+        $this->usuarioLogado = Auth::user();
+        $this->permissaoTarefas = $this->buscarPermissoesTarefas();
+        return view('livewire.permissao-tarefa.alterar')
         ->layout("components.layouts.app");
     }
 
-    public function criar(){
+    public function alterarPermissao(){
         $this->validate();
 
         PermissaoTarefa::create([
@@ -59,5 +65,34 @@ class Criar extends Component
     public function limparCampos(){
         $this->idUsuario = $this->idTarefa = null;
         $this->editar = $this->eliminar = $this->leitura = null;
+    }
+
+    public function buscarPermissoesTarefas()
+    {
+        return PermissaoTarefa::all();
+    }
+
+    public function buscarTodasTarefas($idTarefa)
+    {
+        if (Auth::user()->id_acesso == 1) {
+            return Tarefa::where("id", $idTarefa)->first();
+        } else {
+            return Tarefa::where("id", $idTarefa)
+                ->where(function ($query) {
+                    $query->where("usuario_especifico", $this->usuarioLogado->id)
+                        ->orWhereNull("usuario_especifico");
+                })
+                ->first();
+        }
+    }
+
+    public function preencharFormulario($idPermissao){
+        $permissao = PermissaoTarefa::find($idPermissao);
+        $this->idPermissao = $permissao->id;
+        $this->idUsuario = $permissao->id_usuario;
+        $this->idTarefa =  $permissao->id_tarefa;
+        $this->editar =  $permissao->editar;
+        $this->eliminar =  $permissao->eliminar;
+        $this->leitura =  $permissao->leitura;
     }
 }
