@@ -12,6 +12,7 @@ use App\Livewire\Usuario\{
 use App\Livewire\Tarefa\{
     Criar as CriarTarefa,
     Listar as ListarTarefa,
+    Actualizar as ActualizarTarefa,
     Finalizar as FinalizarTarefa
 };
 use App\Livewire\PermissaoTarefa\{
@@ -39,6 +40,7 @@ Route::prefix("/usuario")->name("usuario.")->group(function(){
 Route::prefix("/tarefa")->name("tarefa.")->group(function(){
     Route::get("/criar", CriarTarefa::class)->name("criar");
     Route::get("/listar", ListarTarefa::class)->name("listar");
+    Route::get("/actualizar/{idTarefa}", ActualizarTarefa::class)->name("actualizar");
     Route::get("/finalizar", FinalizarTarefa::class)->name("finalizar");
 });
 

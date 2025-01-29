@@ -11,6 +11,7 @@
                 <h6 class="op-7 mb-2">Seja Bem-vindo</h6>
             </div>
         </div>
+
         <div class="row">
             @if ($usuario->id_acesso == 1)
                 <div class="col-sm-6 col-md-3">
@@ -83,7 +84,7 @@
                             </div>
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
-                                    <p class="card-category">Tarefas Finalizadas</p>
+                                    <p class="card-category">Tr. Finalizadas</p>
                                     <h4 class="card-title">{{ count($trFinalizadas) }}</h4>
                                 </div>
                             </div>
@@ -92,8 +93,9 @@
                 </div>
             </div>
         </div>
+
         <div class="card-body p-0">
-            <div class="card-title">
+            <div class="card-title mb-3">
                 Lista de Tarefas Finalizadas
             </div>
             <div class="table-responsive">
