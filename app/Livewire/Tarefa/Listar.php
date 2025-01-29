@@ -40,7 +40,8 @@ class Listar extends Component
 
     public function realizarTarefa($idTarefa){
         Tarefa::where("id", $idTarefa)->update([
-            'realizador' => Auth::user()->id
+            'realizador' => Auth::user()->id,
+            'estado' => "em andamento"
         ]);
 
         $this->dispatch("alerta", [

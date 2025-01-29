@@ -38,8 +38,6 @@
                                 @foreach ($permissaoTarefas as $permissao)
                                     @php
                                         $tarefa = $this->buscarTodasTarefas($permissao->id_tarefa);
-                                        echo "Leitura: " . $permissao->leitura ;
-                                        echo "Usuario: " . $permissao->id_usuario . "<br>";
                                     @endphp
 
                                         @if ($permissao->leitura == 'permitido' && $permissao->id_usuario == $usuarioLogado->id)
@@ -63,7 +61,7 @@
                                                 @if ($usuarioLogado->id_acesso == 2)
                                                     <td>
                                                         @if ($tarefa->realizador != null)
-                                                            {{ $tarefa->realizador }}
+                                                             {{ ucwords($tarefa->buscarUsuarioRealizador->name) }}
                                                         @else
                                                             <button type="button" wire:click.prevent='realizarTarefa({{$tarefa->id}})'
                                                                 class="btn btn-success btn-primary btn-lg">
