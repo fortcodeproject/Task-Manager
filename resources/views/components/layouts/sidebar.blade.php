@@ -85,7 +85,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="{{route('usuario.listar')}}">
                                     <span class="sub-item">Listar</span>
                                 </a>
                             </li>

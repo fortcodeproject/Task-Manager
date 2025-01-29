@@ -59,6 +59,11 @@
                     <option value="permitido">Permitido</option>
                     <option value="nao permitido">Não Permitido</option>
                 </select>
+                <div class="text-danger">
+                    @error('criacao_tarefa')
+                        {{ $message }}
+                    @enderror
+                </div>
             </div>
 
             <div class="col-12 mb-3">
