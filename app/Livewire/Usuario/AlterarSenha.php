@@ -37,7 +37,13 @@ class AlterarSenha extends Component
     }
 
     public function verificarSenhaConfirmacao(){
-        dd("ok");
+        if($this->senhaNova == null){
+            $this->msgSenhaConfirmacao = "Senha não deve estar vazio";
+        }else if($this->senhaNova != $this->senhaConfirmacao){
+            $this->msgSenhaConfirmacao = "Senha nova e de confirmação devem ser iguais";
+        }else{
+            $this->msgSenhaConfirmacao = null;
+        }
     }
 
     public function alterar(){
