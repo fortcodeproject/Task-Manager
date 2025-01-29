@@ -13,6 +13,9 @@ use App\Livewire\Tarefa\{
     Criar as CriarTarefa,
     Listar as ListarTarefa
 };
+use App\Livewire\PermissaoTarefa\{
+    Criar as CriarPermissaoTarefa
+};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +38,9 @@ Route::prefix("/usuario")->name("usuario.")->group(function(){
 Route::prefix("/tarefa")->name("tarefa.")->group(function(){
     Route::get("/criar", CriarTarefa::class)->name("criar");
     Route::get("/listar", ListarTarefa::class)->name("listar");
+});
+
+Route::prefix("/tarefa/permissao")->name("tarefa.permissao.")->group(function(){
+    Route::get("/criar", CriarPermissaoTarefa::class)->name("criar");
 });
 
