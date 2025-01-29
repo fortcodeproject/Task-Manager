@@ -8,7 +8,8 @@ use App\Livewire\Usuario\{
     AlterarSenha
 };
 use App\Livewire\Tarefa\{
-    Criar
+    Criar,
+    Listar
 };
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +30,6 @@ Route::prefix("/usuario")->name("usuario.")->group(function(){
 
 Route::prefix("/tarefa")->name("tarefa.")->group(function(){
     Route::get("/criar", Criar::class)->name("criar");
+    Route::get("/listar", Listar::class)->name("listar");
 });
 

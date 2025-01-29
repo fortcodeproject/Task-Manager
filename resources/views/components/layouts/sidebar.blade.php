@@ -64,7 +64,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="{{route('tarefa.listar')}}">
                                     <span class="sub-item">Listar</span>
                                 </a>
                             </li>
