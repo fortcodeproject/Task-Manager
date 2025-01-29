@@ -52,7 +52,7 @@
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#tarerfas">
-                        <i class="fas fa-tasks"></i>
+                        <i class="fas fa-edit"></i>
                         <p>Tarefas</p>
                         <span class="caret"></span>
                     </a>

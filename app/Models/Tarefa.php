@@ -15,4 +15,8 @@ class Tarefa extends Model
         'criador',
         'realizador'
     ];
+
+    public function buscarUsuarioCriador(){
+        return $this->belongsTo(User::class, "criador", "id");
+     }
 }
