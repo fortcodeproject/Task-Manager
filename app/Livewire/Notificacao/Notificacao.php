@@ -5,18 +5,17 @@ namespace App\Livewire\Notificacao;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 class Notificacao extends Component
 {
-    public $notificacoesNaoLidas;
+    public $notificacoesNaoLidas, $usuario;
+    public $listeners = ['tempoRealNotificacoes'];
 
     public function render()
     {
-        $usuario = Auth::user();
-        $this->notificacoesNaoLidas = $usuario->unreadNotifications;
+        $this->usuario = Auth::user();
+        $this->notificacoesNaoLidas = $this->usuario->unreadNotifications;
         return view('livewire.notificacao.notificacao');
     }
 
@@ -29,8 +28,7 @@ class Notificacao extends Component
     }
 
     public function marcarComoTodosLido(){
-        $usuario = Auth::user();
-        $todasNotificacoes = $usuario->unreadNotifications;
+        $todasNotificacoes = $this->usuario->unreadNotifications;
         $todasNotificacoes->markAsRead();
         $this->dispatch("alerta", [
             "icon" => "warning",

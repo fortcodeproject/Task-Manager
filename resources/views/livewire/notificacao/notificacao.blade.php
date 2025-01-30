@@ -44,4 +44,5 @@
             </li>
         @endif
     </ul>
+    <script src="{{ asset('assets/js/temporeal_notificacao.js') }}"></script>
 </div>
