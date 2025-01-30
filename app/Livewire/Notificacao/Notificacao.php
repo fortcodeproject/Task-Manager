@@ -5,6 +5,7 @@ namespace App\Livewire\Notificacao;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
@@ -20,7 +21,7 @@ class Notificacao extends Component
     }
 
     public function marcarComoLida($idNotificacao){
-        DB::update('update notifications set read_at = ? where notifiable_id = ?', [now(), $idNotificacao]);
+        DB::update('update notifications set read_at = ? where id = ?', [now(), $idNotificacao]);
         $this->dispatch("alerta", [
             "icon" => "warning",
             "mensagem" => "Notificação lida"

@@ -21,7 +21,7 @@
                                 <span class="block alert alert-info">
                                     <div class="text-end">
                                         <button type="button"
-                                            wire:click.prevent='marcarComoLida({{$notificacao->notifiable_id}})'
+                                            wire:click.prevent="marcarComoLida('{{$notificacao->id}}')"
                                             class="close" onclick="event.stopPropagation()">X</button>
                                     </div>
                                     <b>{{ $notificacao->data['descricao'] }}</b> <br>
@@ -36,7 +36,7 @@
             </div>
         </li>
         <li>
-            <a class="see-all" href="javascript:void(0);">See all notifications<i class="fa fa-angle-right"></i>
+            <a class="see-all" href="javascript:void(0);">Marcar todos como lido<i class="fa fa-angle-right"></i>
             </a>
         </li>
     </ul>
