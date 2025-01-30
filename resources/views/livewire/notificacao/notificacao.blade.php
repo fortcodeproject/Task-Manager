@@ -30,7 +30,7 @@
                             </div>
                         </a>
                     @empty
-                        <p class="alert alert-info">Nenhuma notificação encontrada</p>
+                        <p class="alert alert-info text-info">Nenhuma notificação encontrada</p>
                     @endforelse
                 </div>
             </div>
