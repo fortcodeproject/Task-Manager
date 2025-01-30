@@ -11,7 +11,7 @@ use Livewire\Component;
 class Criar extends Component
 {
     public $titulo, $usuarioEspecifico, $descricao;
-    public $usuarios;
+    public $usuarios, $usuarioLogado;
     public $tarefas, $trPendentes, $trAndamento, $trFinalizadas;
 
     protected $rules = [
@@ -26,6 +26,7 @@ class Criar extends Component
 
     public function render()
     {
+        $this->usuarioLogado = Auth::user();
         $this->usuarios = User::where("id_acesso", "!=", 1)->get();
         $this->tarefas = Tarefa::all();
         $this->trPendentes = Tarefa::where("estado", "pendente")->get();

@@ -6,6 +6,7 @@
                 <h6 class="op-7 mb-2">Criar uma tarefa</h6>
             </div>
         </div>
+
         <div class="row">
             <div class="col-sm-6 col-md-3">
                 <div class="card card-stats card-round">
