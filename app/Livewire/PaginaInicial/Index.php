@@ -28,12 +28,15 @@ class Index extends Component
     }
 
     public function verificarValidadeTarefas(){
-        $tarefa = Tarefa::find(29);
-        $tempoValidade = Carbon::now()->diffInHours($tarefa->created_at);
-        if (abs($tempoValidade) >= 24) {
-            $tarefa->update([
-                'situacao' => 'inactiva',
-            ]);
+        $todasTarefas = Tarefa::all();
+        foreach ($todasTarefas as $value) {
+            $tarefa = Tarefa::find($value["id"]);
+            $tempoValidade = Carbon::now()->diffInHours($tarefa->created_at);
+            if (abs($tempoValidade) >= 24) {
+                $tarefa->update([
+                    'situacao' => 'inactiva',
+                ]);
+            }
         }
     }
 }

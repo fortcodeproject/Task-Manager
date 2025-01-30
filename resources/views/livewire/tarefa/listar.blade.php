@@ -57,7 +57,7 @@
                                                 @if ($tarefa->realizador != null)
                                                     {{ ucwords($tarefa->buscarUsuarioRealizador->name) }}
                                                 @else
-                                                    @if ($usuarioLogado->id_acesso == 2)
+                                                    @if ($usuarioLogado->id_acesso == 2 && $tarefa->situacao == "activa")
                                                         <button type="button"
                                                             wire:click.prevent='realizarTarefa({{ $tarefa->id }})'
                                                             class="btn btn-success btn-primary btn-lg">

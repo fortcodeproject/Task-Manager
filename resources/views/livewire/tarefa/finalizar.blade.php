@@ -48,14 +48,14 @@
                                             {{ ucwords($tarefa->buscarUsuarioCriador->name) }}
                                         </td>
                                         <td>
-                                            @if ($tarefa->estado == 'em andamento')
+                                            @if ($tarefa->estado == 'em andamento' && $tarefa->situacao == "activa")
                                                 <button type="button"
                                                     wire:click.prevent='finalizarTarefa({{ $tarefa->id }})'
                                                     class="btn btn-success btn-primary btn-lg">
                                                     Finalizar
                                                 </button>
                                                 @else
-                                                Finalizado
+                                                {{$tarefa->situacao == "activa" ? "Finalizado": "Vazio"}}
                                             @endif
                                         </td>
                                     </tr>
