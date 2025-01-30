@@ -15,15 +15,17 @@
                 <div class="notif-center">
                     @foreach ($notificacoesNaoLidas as $notificacao)
                         <a href="#">
-                            <div class="notif-icon notif-primary">
-                                <i class="fa fa-envelop"></i>
+                            <div class="notif-icon">
+                                
                             </div>
                             <div class="notif-content">
                                 <span class="block alert alert-info">
+                                    <div class="text-end">
+                                        <button class="btn-close text-end"></button> 
+                                    </div>
                                     <b>{{ $notificacao->data["descricao"] }}</b> <br>
                                     <span class="time">5 minutes ago</span>
                                 </span>
-                                
                             </div>
                         </a>
                     @endforeach
