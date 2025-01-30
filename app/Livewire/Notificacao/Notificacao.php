@@ -24,7 +24,7 @@ class Notificacao extends Component
         DB::update('update notifications set read_at = ? where id = ?', [now(), $idNotificacao]);
         $this->dispatch("alerta", [
             "icon" => "warning",
-            "mensagem" => "Notificação lida"
+            "mensagem" => "Notificação marcada como lida"
         ]);
     }
 
