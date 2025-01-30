@@ -20,11 +20,21 @@ class Notificacao extends Component
         return view('livewire.notificacao.notificacao');
     }
 
-    public function marcarComoLida($idNotificacao){
+    public function marcarComoLido($idNotificacao){
         DB::update('update notifications set read_at = ? where id = ?', [now(), $idNotificacao]);
         $this->dispatch("alerta", [
             "icon" => "warning",
             "mensagem" => "Notificação marcada como lida"
+        ]);
+    }
+
+    public function marcarComoTodosLido(){
+        $usuario = Auth::user();
+        $todasNotificacoes = $usuario->unreadNotifications;
+        $todasNotificacoes->markAsRead();
+        $this->dispatch("alerta", [
+            "icon" => "warning",
+            "mensagem" => "Todas notificações marcadas como lidas"
         ]);
     }
 

@@ -21,11 +21,11 @@
                                 <span class="block alert alert-info">
                                     <div class="text-end">
                                         <button type="button"
-                                            wire:click.prevent="marcarComoLida('{{$notificacao->id}}')"
-                                            class="close" onclick="event.stopPropagation()">X</button>
+                                            wire:click.prevent="marcarComoLido('{{ $notificacao->id }}')" class="close"
+                                            onclick="event.stopPropagation()">X</button>
                                     </div>
                                     <b>{{ $notificacao->data['descricao'] }}</b> <br>
-                                    <span class="time">{{$this->formatarTempo($notificacao->created_at)}}</span>
+                                    <span class="time">{{ $this->formatarTempo($notificacao->created_at) }}</span>
                                 </span>
                             </div>
                         </a>
@@ -35,9 +35,13 @@
                 </div>
             </div>
         </li>
-        <li>
-            <a class="see-all" href="javascript:void(0);">Marcar todos como lido<i class="fa fa-angle-right"></i>
-            </a>
-        </li>
+
+        @if(count($notificacoesNaoLidas) > 0)
+            <li>
+                <button class="btn btn-info see-all " style="min-width: 100px" wire:click.prevent="marcarComoTodosLido"
+                    href="#">Marcar todos como lido<i class="fa fa-angle-right"></i>
+                </button>
+            </li>
+        @endif
     </ul>
 </div>
