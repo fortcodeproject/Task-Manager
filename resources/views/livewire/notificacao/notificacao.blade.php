@@ -22,7 +22,7 @@
                                     <div class="text-end">
                                         <button type="button"
                                             wire:click.prevent='marcarComoLida({{$notificacao->notifiable_id}})'
-                                            class="bg-none" onclick="event.stopPropagation()">X</button>
+                                            class="close" onclick="event.stopPropagation()">X</button>
                                     </div>
                                     <b>{{ $notificacao->data['descricao'] }}</b> <br>
                                     <span class="time">{{$this->formatarTempo($notificacao->created_at)}}</span>
