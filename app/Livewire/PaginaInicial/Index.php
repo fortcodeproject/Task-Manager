@@ -4,6 +4,7 @@ namespace App\Livewire\PaginaInicial;
 
 use App\Models\Tarefa;
 use App\Models\User;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Index extends Component
@@ -12,6 +13,7 @@ class Index extends Component
 
     public function render()
     {
+        $this->verificarValidadeTarefas();
         $this->usuarios = User::where("id_acesso", "!=", 1)->get();
         $this->tarefas = Tarefa::where("estado", "finalizado")->get();
         $this->trPendentes = Tarefa::where("estado", "pendente")->get();
@@ -23,5 +25,15 @@ class Index extends Component
 
     public function buscarUsuario($idUsuario){
         return User::find($idUsuario);
+    }
+
+    public function verificarValidadeTarefas(){
+        $tarefa = Tarefa::find(29);
+        $tempoValidade = Carbon::now()->diffInHours($tarefa->created_at);
+        if (abs($tempoValidade) >= 24) {
+            $tarefa->update([
+                'situacao' => 'inactiva',
+            ]);
+        }
     }
 }
