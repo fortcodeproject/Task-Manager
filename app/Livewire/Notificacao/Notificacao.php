@@ -7,12 +7,13 @@ use Livewire\Component;
 
 class Notificacao extends Component
 {
-    public $notificacoesNaoLidas;
+    public $notificacoesNaoLidas, $notificacoes;
 
     public function render()
     {
         $usuario = Auth::user();
         $this->notificacoesNaoLidas = $usuario->unreadNotifications;
+        $this->notificacoes = $usuario->notifications;
         return view('livewire.notificacao.notificacao');
     }
 
