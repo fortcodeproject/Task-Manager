@@ -9,13 +9,16 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    public $usuarios, $tarefas, $trPendentes, $trAndamento, $trFinalizadas;
+    public $usuarios, $tarefas, $trPendentes;
+    public $trAndamento, $trFinalizadas, $tarefasGeral, $usuariosGeral;
 
     public function render()
     {
         $this->verificarValidadeTarefas();
         $this->usuarios = User::where("id_acesso", "!=", 1)->get();
         $this->tarefas = Tarefa::where("estado", "finalizado")->get();
+        $this->usuariosGeral = User::all();
+        $this->tarefasGeral = Tarefa::all();
         $this->trPendentes = Tarefa::where("estado", "pendente")->get();
         $this->trFinalizadas = Tarefa::where("estado", "finalizado")->get();
         

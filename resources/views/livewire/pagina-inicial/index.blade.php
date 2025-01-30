@@ -26,7 +26,7 @@
                                 <div class="col col-stats ms-3 ms-sm-0">
                                     <div class="numbers">
                                         <p class="card-category">Usuários</p>
-                                        <h4 class="card-title">{{ count($usuarios) }}</h4>
+                                        <h4 class="card-title">{{ count($usuariosGeral) }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
                                     <p class="card-category">Tarefas</p>
-                                    <h4 class="card-title">{{ count($tarefas) }}</h4>
+                                    <h4 class="card-title">{{ count($tarefasGeral) }}</h4>
                                 </div>
                             </div>
                         </div>
