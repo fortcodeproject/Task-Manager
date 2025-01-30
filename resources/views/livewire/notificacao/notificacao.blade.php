@@ -1,6 +1,6 @@
 <div>
     <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
+        aria-haspopup="true" aria-expanded="true">
         <i class="fa fa-bell" style="font-size: 25px"></i>
         <span class="notification bg-primary" style="font-size: 15px">{{ count($notificacoesNaoLidas) }}</span>
     </a>
@@ -13,22 +13,25 @@
         <li>
             <div class="notif-scroll scrollbar-outer">
                 <div class="notif-center">
-                    @foreach ($notificacoesNaoLidas as $notificacao)
+                    @forelse ($notificacoesNaoLidas as $notificacao)
                         <a href="#">
                             <div class="notif-icon">
-                                
                             </div>
                             <div class="notif-content">
                                 <span class="block alert alert-info">
                                     <div class="text-end">
-                                        <button class="btn-close text-end"></button> 
+                                        <button type="button"
+                                            wire:click.prevent='marcarComoLida({{$notificacao->notifiable_id}})'
+                                            class="bg-none" onclick="event.stopPropagation()">X</button>
                                     </div>
-                                    <b>{{ $notificacao->data["descricao"] }}</b> <br>
-                                    <span class="time">5 minutes ago</span>
+                                    <b>{{ $notificacao->data['descricao'] }}</b> <br>
+                                    <span class="time">{{$this->formatarTempo($notificacao->created_at)}}</span>
                                 </span>
                             </div>
                         </a>
-                    @endforeach
+                    @empty
+                        <p class="alert alert-info">Nenhuma notificação encontrada</p>
+                    @endforelse
                 </div>
             </div>
         </li>
