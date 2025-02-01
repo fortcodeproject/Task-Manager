@@ -17,7 +17,7 @@ class CheckLogoutAutenticacao
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::user()) {
-            redirect()->route("inicio");
+           return redirect()->route("inicio");
         }
         return $next($request);
     }

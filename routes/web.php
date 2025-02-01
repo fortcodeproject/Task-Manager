@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/usuario")->name("usuario.")->group(function(){
-    Route::get("/autenticacao", Autenticacao::class)->name("autenticacao");
+    Route::get("/autenticacao", Autenticacao::class)->name("autenticacao")->middleware("CheckLogoutAutenticacao");
     Route::get("/perfil/{idUsuario}", Perfil::class)->name("perfil")->middleware("CheckAutenticacao");
     Route::get("/actualizar/dados/{idUsuario}", ActualizarDados::class)->name("actualizar.dados")->middleware("CheckAutenticacao");
     Route::get("/alterar/senha", AlterarSenha::class)->name("alterar.senha")->middleware("CheckAutenticacao");
@@ -47,4 +47,4 @@ Route::prefix("/tarefa/permissao")->name("tarefa.permissao.")->group(function(){
     Route::get("/alterar", AlterarPermissaoTarefa::class)->name("alterar");
 })->middleware("CheckAutenticacao");
 
-Route::get("/inicio", Index::class)->name("inicio")->middleware("CheckLogoutAutenticacao");
+Route::get("/inicio", Index::class)->name("inicio")->middleware("CheckAutenticacao");
