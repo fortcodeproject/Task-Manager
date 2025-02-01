@@ -6,6 +6,7 @@ use App\Models\PermissaoTarefa;
 use App\Models\Tarefa;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class Alterar extends Component
@@ -40,6 +41,12 @@ class Alterar extends Component
         $this->permissaoTarefas = $this->buscarPermissoesTarefas();
         return view('livewire.permissao-tarefa.alterar')
         ->layout("components.layouts.app");
+    }
+
+    public function mount(){
+        if (!Gate::allows("criadorTarefas") ) {
+           redirect()->route("inicio");
+        } 
     }
 
     public function alterarPermissao(){

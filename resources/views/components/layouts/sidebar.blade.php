@@ -58,7 +58,7 @@
                     </a>
                     <div class="collapse" id="tarerfas">
                         <ul class="nav nav-collapse">
-                            @if ($usuario->criacao_tarefa == 'permitido')
+                            @if (Gate::allows("criadorTarefas"))
                                 <li>
                                     <a href="{{ route('tarefa.criar') }}">
                                         <span class="sub-item">Criar</span>
@@ -79,7 +79,7 @@
                                 </li>
                             @endif
 
-                            @if ($usuario->criacao_tarefa == 'permitido')
+                            @if (Gate::allows("criadorTarefas"))
                                 <li>
                                     <a href="{{ route('tarefa.permissao.alterar') }}">
                                         <span class="sub-item">Alterar Permissão</span>

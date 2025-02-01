@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Notifications\Notificacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
@@ -26,6 +27,12 @@ class Criar extends Component
         "titulo.required" => "Campo obrigatório",
         "descricao.required" => "Campo obrigatório",
     ];
+
+    public function mount(){
+        if (!Gate::allows("criadorTarefas") ) {
+           redirect()->route("inicio");
+        } 
+    }
 
     public function render()
     {
