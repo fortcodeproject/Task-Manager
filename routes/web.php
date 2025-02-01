@@ -47,4 +47,4 @@ Route::prefix("/tarefa/permissao")->name("tarefa.permissao.")->group(function(){
     Route::get("/alterar", AlterarPermissaoTarefa::class)->name("alterar");
 })->middleware("CheckAutenticacao");
 
-Route::get("/inicio", Index::class)->name("inicio")->middleware("CheckAutenticacao");
+Route::get("/inicio", Index::class)->name("inicio")->middleware("CheckLogoutAutenticacao");

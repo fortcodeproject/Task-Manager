@@ -22,12 +22,6 @@ class Autenticacao extends Component
         "senha.min" => "A senha deve conter no mínimo 3 caracteres",
     ];
 
-    public function mount(){
-        if (Gate::allows("usuarioAutenticado")) {
-            redirect()->route("inicio");
-        }
-    }
-
     public function render()
     {
         return view('livewire.usuario.autenticacao')
