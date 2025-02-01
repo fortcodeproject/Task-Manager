@@ -3,6 +3,7 @@
 namespace App\Livewire\Usuario;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class PermissaoUsuario extends Component
@@ -10,6 +11,10 @@ class PermissaoUsuario extends Component
     public $usuarios, $criacao_tarefa;
     public $idUsuario;
 
+    public function mount(){
+        Gate::authorize("superAdmin");
+    }
+    
     protected $rules = [
         "criacao_tarefa" => "required"
     ];

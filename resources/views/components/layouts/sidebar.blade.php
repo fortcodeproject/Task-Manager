@@ -71,7 +71,7 @@
                                 </a>
                             </li>
 
-                            @if ($usuario->id_acesso == 2)
+                            @if (Gate::allows("usuarioNormal"))
                                 <li>
                                     <a href="{{ route('tarefa.finalizar') }}">
                                         <span class="sub-item">Finalizar</span>
@@ -90,7 +90,7 @@
                     </div>
                 </li>
 
-                @if ($usuario->id_acesso == 1)
+                @if (Gate::allows("superAdmin"))
                     <li class="nav-item">
                         <a data-bs-toggle="collapse" href="#usuarios">
                             <i class="fas fa-users"></i>

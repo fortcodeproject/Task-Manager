@@ -5,6 +5,7 @@ namespace App\Livewire\Tarefa;
 use App\Models\PermissaoTarefa;
 use App\Models\Tarefa;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class Finalizar extends Component
@@ -12,6 +13,10 @@ class Finalizar extends Component
     public $permissaoTarefas, $tarefas;
     public $usuarioLogado;
     public $permicaoUsuarioLogado = array();
+
+    public function mount(){
+        Gate::authorize("usuarioNormal");
+    }
 
     public function render()
     {

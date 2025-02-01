@@ -3,6 +3,7 @@
 namespace App\Livewire\Usuario;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
@@ -22,6 +23,10 @@ class Criar extends Component
         "email.required" => "Campo obrigatório",
         "criacao_tarefa.required" => "Campo obrigatório",
     ];
+
+    public function mount(){
+        Gate::authorize("superAdmin");
+    }
 
     public function render()
     {

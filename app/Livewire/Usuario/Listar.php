@@ -3,12 +3,17 @@
 namespace App\Livewire\Usuario;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class Listar extends Component
 {
     public $usuarios;
 
+    public function mount(){
+        Gate::authorize("superAdmin");
+    }
+    
     public function render()
     {
         $this->usuarios = User::where("id_acesso", "!=", 1)->get();
