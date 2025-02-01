@@ -3,6 +3,7 @@
 namespace App\Livewire\Usuario;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class Autenticacao extends Component
@@ -20,6 +21,12 @@ class Autenticacao extends Component
         "senha.required" => "Campo obrigatório",
         "senha.min" => "A senha deve conter no mínimo 3 caracteres",
     ];
+
+    public function mount(){
+        if (Gate::allows("usuarioAutenticado")) {
+            redirect()->route("inicio");
+        }
+    }
 
     public function render()
     {
